@@ -1,6 +1,6 @@
 # dbt-course
 
-Welcome to the dbt Course project!
+Welcome to the dbt Course project! If you're here to do the pre-course work, head to [pre-course/pre_course.md](pre-course/pre_course.md).
 
 ## Resources
 
