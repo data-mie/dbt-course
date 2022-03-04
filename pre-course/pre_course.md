@@ -66,11 +66,12 @@ Congratulations! You've just run dbt for the first time in your new project.
 
 The final step is to create your first dbt model. We're going to create a basic `customers` model, with data from our customers and orders data. To do so, complete the following steps:
 
-1. Hover over the 'models' directory in the file navigator to the left of the screen. Three dots will appear. Click on the dots and select new file.
-2. A dialog box will appear at the top of the screen. We want to create a file called `customers.sql` in the `models` directory. You should input `models/customers.sql` and click 'OK'.
-3. There will now be a file in the `models/` directory called `customers.sql`. Click on it. The file will be blank. Paste into that file the SQL from the bottom of this file.
-4. Once pasted, click 'Preview' in the top left to see the results of the query. Click 'Save' in the top right corner to save the file.
-5. Finally, we want to build this model as an object in our database. Once again, enter `dbt run` at the bottom of the page and click enter. You should now see your new `customers` model build, in addition to the two example models that came with the project.
+1. Delete the example models that came with the dbt project initialization. Hover over the `models/examples` directory in the file navigator to the left of the screen. Three dots will appaer. Click on the dots and select 'Delete'.
+2. Hover over the `models` directory in the file navigator, click on the three dots and select 'New File'.
+3. A dialog box will appear at the top of the screen. We want to create a file called `customers.sql` in the `models` directory. You should input `models/customers.sql` and click 'OK'.
+4. There will now be a file in the `models/` directory called `customers.sql`. Click on it. The file will be blank. Paste into that file the SQL from the bottom of this file.
+5. Once pasted, click 'Preview' in the top left to see the results of the query. Click 'Save' in the top right corner to save the file.
+6. Finally, we want to build this model as an object in our database. Once again, enter `dbt run` at the bottom of the page and click enter. You should now see your new `customers` model build.
 
 You've now written your first dbt model and have completed the pre-course requirements. I'm looking forward to teaching all of you in the upcoming course!
 
