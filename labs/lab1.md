@@ -2,7 +2,7 @@
 
 ### 1. Re-factor your current model by creating two new staging models
 
-So far, we've created one model. That model references two raw tables from our warehouse and 'cleans' up some of that data. Create two new models, `stg_ecomm__orders` and `stg_ecomm__customers`, that do that clean-up. Then, re-factor our existing model to reference those staging models. If you did not create an order model already, you will need to create one. 
+So far, we've created one `customers` model in the [pre-course work](../pre-course/pre_course.md). That model references two raw tables from our warehouse and 'cleans' up some of that data. Create two new models, `stg_ecomm__orders` and `stg_ecomm__customers`, that do that clean-up. Then, re-factor the existing `customers` model to reference those staging models.
 
 <details>
   <summary>👉 Section 1</summary>
@@ -28,7 +28,7 @@ So far, we've created one model. That model references two raw tables from our w
     phone_number
   from raw.ecomm.customers
   ```
-  (3) Re-factor the top two CTEs of our original `orders` model to select from our new models. The first CTE should now be:
+  (3) Re-factor the top two CTEs of our original `customers` model to select from our new models using the `ref` macro. The first CTE should now be:
 
   ```sql
   select
@@ -64,7 +64,7 @@ Things to think about:
 
   (2) Replace the hard-coded table references in `stg_ecomm__orders` and `stg_ecomm__customers` with the source function. The source function looks like:
   ```sql
-  {{ source('ecomm','customers') }}
+  {{ source('ecomm', 'customers') }}
   ```
 
   (3) Execute `dbt run` in the console at the bottom of your screen to make sure everything is working.
@@ -159,7 +159,7 @@ Create an `orders` model that calculates `delivery_time_from_collection` and `de
     delivered_at,
     status as delivery_status,
     _synced_at
-  from {{ source('ecomm','deliveries') }}
+  from {{ source('ecomm', 'deliveries') }}
   ```
 
   (2) Create a new file in the `models/` directory called `orders.sql` that contains the following SQL:
