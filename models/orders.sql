@@ -2,7 +2,8 @@
     config(
         materialized='incremental',
         unique_key='order_id',
-        snowflake_warehouse='COMPUTE_WH_M'
+        snowflake_warehouse='COMPUTE_WH_M',
+        cluster_by=['ordered_at']
     )
 }}
 
