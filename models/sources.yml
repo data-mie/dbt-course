@@ -9,3 +9,8 @@ sources:
       - name: orders
         description: Each record in this table represents an order in our ecommerce application.
       - name: deliveries
+
+  - name: stripe
+    database: raw
+    tables:
+      - name: payments

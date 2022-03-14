@@ -17,6 +17,12 @@ deliveries_filtered as (
     where delivery_status = 'delivered'
 ),
 
+customers as (
+    select
+        *
+    from {{ ref('stg_ecomm__customers') }}
+),
+
 joined as (
     select
         orders.order_id,
@@ -29,8 +35,23 @@ joined as (
         datediff('minutes', deliveries_filtered.picked_up_at, deliveries_filtered.delivered_at) as delivery_time_from_collection
     from orders
     left join deliveries_filtered on (orders.order_id = deliveries_filtered.order_id)
+    left join customers on (orders.customer_id = customers.customer_id)
+    where customers.email not ilike '%ecommerce.com'
+        and customers.email not ilike '%ecommerce.ca'
+        and customers.email not ilike '%ecommerce.co.uk'
+),
+
+days_since_last_order as (
+    select
+        *,
+        datediff(
+            'day', 
+            lag(ordered_at) over (partition by customer_id order by ordered_at),
+            ordered_at
+        ) as days_since_last_order
+    from joined
 )
 
 select
     *
-from joined
+from days_since_last_order
