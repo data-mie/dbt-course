@@ -18,5 +18,5 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 models:
-    +query_tag: dbt_query
-    +materialized: table
+    dbt_course:
+        +materialized: table
