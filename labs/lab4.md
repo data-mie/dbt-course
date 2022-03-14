@@ -127,13 +127,13 @@ The data for this exercise can be found at `raw.geo.countries`.
 
 </details>
 
-### 5. Create a `customer__daily` model
+### 5. Create a `customers_daily` model
 
 Because customers regularly change their addresses, our support team want to know what address a customer had in a system on a given day.
 
 First, create a calendar spine using the dbt-utils package.
 
-Then, create a model called `customer__daily` that uses our snapshot data and the calendar spine to have a record of what a customer looked like on each day since they were created.
+Then, create a model called `customers_daily` that uses our snapshot data and the calendar spine to have a record of what a customer looked like on each day since they were created.
 
 **N.B.**: For the purposes of this exercise, given we don't have our own snapshot data, please use the following table for the snapshot data: `analytics.snapshots_prod.customers_snapshot`.
 
@@ -155,7 +155,7 @@ Then, create a model called `customer__daily` that uses our snapshot data and th
   {{ dbt_date.get_date_dimension('2020-01-01', '<current_date>') }}
   ```
 
-  (3) Create a new model called `customer__daily.sql`. Add the following SQL:
+  (3) Create a new model called `customers_daily.sql`. Add the following SQL:
   ```sql
   with calendar as (
     select
@@ -184,7 +184,7 @@ Then, create a model called `customer__daily` that uses our snapshot data and th
     *
   from joined
   ```
-  (4) Execute `dbt run -s +customer__daily` to make sure your models run successfully.
+  (4) Execute `dbt run -s +customers_daily` to make sure your models run successfully.
 </details>
 
 ### 6. Write a query that shows rolling 7-day order volumes
