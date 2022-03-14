@@ -66,7 +66,8 @@ In the last lab, we added two columns to each of the `orders` and `customers` mo
   ```sql
   {% test greater_than_zero(model, column_name) %}
 
-  select count(*) as validation_errors
+  select
+      *
   from {{ model }}
   where {{ column_name }} <= 0
 
@@ -95,27 +96,27 @@ Given the specificity of this test, we likely don't want to write a custom schem
   (1) Create a new file in the `tests/` directory called `count_orders_check.sql` that contains the following SQL:
   ```sql
   with orders as (
-    select 
-      count(*) as orders_count
-    from {{ ref('orders') }}
+      select
+          count(*) as orders_count
+      from {{ ref('orders') }}
   ),
 
   customers as (
-    select
-      sum(count_orders_last_90_days) as customers_count
-    from {{ ref('customers') }}
-  ), 
-  
+      select
+          sum(count_orders_last_90_days) as customers_count
+      from {{ ref('customers') }}
+  ),
+
   joined as (
-    select
-      *
-    from orders
-    cross join customers
-    where customers_count > orders_count
+      select
+          *
+      from orders
+      cross join customers
+      where customers_count > orders_count
   )
 
   select
-    *
+      *
   from joined
   ```
   (2) Execute `dbt test` in the console at the bottom of your screen to make sure all the tests pass.
