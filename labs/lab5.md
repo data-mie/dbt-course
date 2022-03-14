@@ -96,7 +96,7 @@ The store mappings are as follows:
 <details>
   <summary>👉 Section 3</summary>
 
-  (1) Create a file in the `data/` directory called `stores_data.csv` that contains the following data:
+  (1) Create a file in the `seeds/` directory called `stores.csv` that contains the following data:
   ```csv
     store_id,store_name
     1,New York
@@ -104,7 +104,7 @@ The store mappings are as follows:
     3,Tokyo
   ```
   (2) Execute `dbt seed` in the console at the bottom of your screen to make sure your seed uploads correctly.
-  (3) You can now reference that data as `{{ ref('stores_data') }}`. Add code in your `orders` model that adds a `store_name` column.
+  (3) You can now reference that data as `{{ ref('stores') }}`. Add code in your `orders` model that adds a `store_name` column.
   (4) Execute `dbt run -s orders` to make sure your updates run successfully.
 </details>
 
