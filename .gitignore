@@ -1,1 +1,5 @@
+target/
+logs/
+dbt_packages/
+
 venv/
