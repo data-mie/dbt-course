@@ -24,7 +24,7 @@ where customer_id in (
 <details>
   <summary>👉 Section 1 (try first before opening this)</summary>
 
-  (1) Create a file in the `models/` directory called `rpt_7_week_active_customers.sql` and put the query above in it.
+  (1) Create a file in the `models/` directory called `seven_week_active_customers.sql` and put the query above in it.
   (2) There are two bits that we feel we could re-factor into CTEs. The first is the subquery in the `where` clause. We can also join it instead of doing a `where customer_id in`. We can pull this out so that our file looks as follows:
   ```sql
   with customers as (
@@ -34,8 +34,8 @@ where customer_id in (
   ),
 
   seven_weeks as (
-    select
-      distinct customer_id
+    select distinct
+      customer_id
     from {{ ref('orders') }}
     where ordered_at > current_date - 42
   )
@@ -58,8 +58,8 @@ where customer_id in (
   ),
 
   seven_weeks as (
-    select 
-      distinct customer_id
+    select distinct
+      customer_id
     from {{ ref('orders') }}
     where ordered_at > current_date - 42
   ),
@@ -84,7 +84,7 @@ where customer_id in (
   left join half_year on (customers.customer_id = half_year.customer_id)
   inner join seven_weeks on (customers.customer_id = seven_weeks.customer_id)
   ```
-  (3) Execute `dbt run -s +rpt_7_week_active_customers` to make sure your model runs successfully.
+  (3) Execute `dbt run -s +seven_week_active_customers` to make sure your model runs successfully.
 </details>
 
 ### 2. Break out the query into ephemeral models.
@@ -107,7 +107,7 @@ Things to think about:
 
   (3) Add a config to the two new models so that they get `materialized` as `ephemeral`.
 
-  (4) Execute `dbt run -s +rpt_7_week_active_customers` to make sure your model runs successfully.
+  (4) Execute `dbt run -s +seven_week_active_customers` to make sure your model runs successfully.
 </details>
 
 ## Links and Walkthrough Guides

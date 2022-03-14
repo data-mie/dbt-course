@@ -128,9 +128,7 @@ Given the specificity of this test, we likely don't want to write a custom schem
 
   ```
   analysis/
-  data/
-  labs/
-  ├─ ...
+  logs/
   macros/
   ├─ test_greater_than_zero.sql
   models/
@@ -141,15 +139,14 @@ Given the specificity of this test, we likely don't want to write a custom schem
   ├─ stg_ecomm__customers.sql
   ├─ stg_ecomm__deliveries.sql
   ├─ stg_ecomm__orders.sql
-  models/
-  pre-course/
-  ├─ ...
+  seeds/
   snapshots/
+  target/
   tests/
   ├─ count_orders_check.sql
   .gitignore
-  README.md
   dbt_project.yml
+  README.md
   ```
 </details>
 

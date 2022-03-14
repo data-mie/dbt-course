@@ -239,9 +239,7 @@ Are there any final changes you want to make? Any models you want to refactor? A
 
   ```
   analysis/
-  data/
-  labs/
-  ├─ ...
+  logs/
   macros/
   models/
   ├─ customers.sql
@@ -251,14 +249,13 @@ Are there any final changes you want to make? Any models you want to refactor? A
   ├─ stg_ecomm__customers.sql
   ├─ stg_ecomm__deliveries.sql
   ├─ stg_ecomm__orders.sql
-  models/
-  pre-course/
-  ├─ ...
+  seeds/
   snapshots/
+  target/
   tests/
   .gitignore
-  README.md
   dbt_project.yml
+  README.md
   ```
 </details>
 
