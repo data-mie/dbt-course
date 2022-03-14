@@ -45,3 +45,17 @@ models:
 
   - name: stg_ecomm__customers
     description: A staging model for the customers table in the 'ecomm' source.
+
+  - name: seven_week_active_customers
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: __6_month_customer_order_metrics
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
