@@ -6,7 +6,7 @@ Welcome to the dbt Course project! If you're here to do the pre-course work, hea
 
 You'll be given a slide handout during the course.
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRUnKXbE_NCXgJEaL8J_fuWngTWu91NXYgxqVNI8iUlsieb3C4GgoltCT7-y0ne-RcwqJxcAVG6FX6p/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+* [Module 1: Models, Sources and Docs](https://docs.google.com/presentation/d/e/2PACX-1vRUnKXbE_NCXgJEaL8J_fuWngTWu91NXYgxqVNI8iUlsieb3C4GgoltCT7-y0ne-RcwqJxcAVG6FX6p/pub?start=false&loop=false&delayms=3000)
 
 ## Labs
 
