@@ -23,6 +23,12 @@ customers as (
     from {{ ref('stg_ecomm__customers') }}
 ),
 
+stores as (
+    select
+        *
+    from {{ ref('stores') }}
+),
+
 joined as (
     select
         orders.order_id,
