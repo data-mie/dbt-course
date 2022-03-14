@@ -18,7 +18,7 @@ Things to think about:
 
   (1) Change the config in our `orders` model by adding the following:
   ```
-  snowflake_warehouse= "COMPUTE_WH_M"
+  snowflake_warehouse='COMPUTE_WH_M'
   ```
   (2) Execute `dbt run -s orders`. Can you see your query in the Snowflake query history with the larger warehouse?
 
