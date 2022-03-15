@@ -15,7 +15,8 @@ So far, we've created one `customers` model in the [pre-course work](../pre-cour
     customer_id,
     created_at as ordered_at,
     status as order_status,
-    total_amount
+    total_amount,
+    store_id
   from raw.ecomm.orders
   ```
   (2) Create a new file in the `models/` directory called `stg_ecomm__customers.sql` that contains the following SQL:
