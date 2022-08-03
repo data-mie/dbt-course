@@ -8,6 +8,9 @@ sources:
         description: Each record in this table represents a customer in our ecommerce application.
       - name: orders
         description: Each record in this table represents an order in our ecommerce application.
+      - name: orders_us
+      - name: orders_de
+      - name: orders_au
       - name: deliveries
 
   - name: stripe
