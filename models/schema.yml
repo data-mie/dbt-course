@@ -45,6 +45,10 @@ models:
 
   - name: stg_ecomm__orders
     description: A staging model for the orders table in the 'ecomm' source.
+    columns:
+      - name: store_id
+        tests:
+          - not_null
 
   - name: stg_ecomm__customers
     description: A staging model for the customers table in the 'ecomm' source.
