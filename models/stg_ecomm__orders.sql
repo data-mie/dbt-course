@@ -28,15 +28,25 @@ store_ids as (
     from store_codes
 ),
 
-fields as (
+renamed as (
     select
         *,
         id as order_id,
         created_at as ordered_at,
         status as order_status
     from store_ids
+),
+
+deduplicated as (
+    {{
+        dbt_utils.deduplicate(
+            relation='renamed',
+            partition_by='order_id',
+            order_by='_synced_at desc',
+        )
+    }}
 )
 
 select
     *
-from fields
+from deduplicated
