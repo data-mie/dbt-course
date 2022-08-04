@@ -2,14 +2,14 @@
 
 ### 1. The `dbt_utils` package 
 
-[dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) contains many useful tests and macros that can be reused across dbt projects. 
+[dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) contains many useful tests and macros that can be reused across dbt projects. The first task is to:
 
-1. Check the generic tests and macros in `dbt_utils` and discuss the ones you find useful or interesting with your peers
+(1.1) Check the generic tests and macros in `dbt_utils` and discuss the ones you find useful or interesting with your peers
     * e.g., `expression_is_true`, `at_least_one`, `get_column_values`, `deduplicate`, `star`, `union_relations`
 
-2. Make sure you have `dbt_utils` version `>=0.8.5` listed in your project dependencies in the `packages.yml` file
+(1.2) Make sure you have `dbt_utils` version `>=0.8.5` listed in your project dependencies in the `packages.yml` file
 
-3. Run `dbt deps` to ensure the required version of `dbt_utils` is installed
+(1.3) Run `dbt deps` to ensure the required version of `dbt_utils` is installed
 
 ### 2. New ecommerce stores
 
@@ -24,8 +24,8 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
 <details>
   <summary>👉 Section 2</summary>
 
-  (1) Add the three orders tables to your `sources.yml`
-  (2) Refactor the `stg_ecomm__orders` model so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
+  (2.1) Add the three orders tables to your `sources.yml`
+  (2.2) Refactor the `stg_ecomm__orders` model so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
 
   ```sql
     with sources as (
@@ -40,8 +40,8 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
 
     ...
   ```
-  (3) Preview and inspect the compiled SQL of `stg_ecomm__orders`. How does the `dbt_utils.union_relations` macro differ from a manually constructed union?
-  (4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id`
+  (2.3) Preview and inspect the compiled SQL of `stg_ecomm__orders`. How does the `dbt_utils.union_relations` macro differ from a manually constructed union?
+  (2.4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id`
   ```sql
     with sources as (
         {{
@@ -81,8 +81,8 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
         *
     from renamed
   ```
-  (5) Run the model and its downstream dependencies: `dbt run -s stg_ecomm__orders+`
-  (6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
+  (2.5) Run the model and its downstream dependencies: `dbt run -s stg_ecomm__orders+`
+  (2.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
 
 </details>
 
