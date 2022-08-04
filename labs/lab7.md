@@ -198,8 +198,10 @@ select
 from final
 ```
 
+(4.4) Add primary key and `total_amount_usd` `not_null` tests in the `schema.yml`
+
 (4.4) Ensure the model and its upstream depencies run successfully: `dbt run -s +int_ecomm__orders_enriched`
 
-(4.5) Add a `not_null` test for `total_amount_usd` in `int_ecomm__orders_enriched` and run the tests: `dbt test -s +int_ecomm__orders_enriched`. Does the `not_null` test fail? Why?
+(4.5) Run the tests: `dbt test -s +int_ecomm__orders_enriched`. Does the `total_amount_usd` `not_null` test fail? Why?
 
 </details>
