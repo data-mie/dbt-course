@@ -138,9 +138,9 @@ Order amounts in the DE and AU tables are in EUR and AUD currencies, respectivel
 <details>
   <summary>👉 Section 4</summary>
 
-(4.1) Add the conversion rates table to `sources.yml`
+(4.1) Add the `finance` source and the conversion rates table to `sources.yml`
 
-(4.2) Create a `stg_finance__conversion_rates_usd` model for the conversion rates. Include a `conversion_rate_id` primary key using `dbt_utils.surrogate_key`. Also, add tests for the primary key
+(4.2) Create a `stg_finance__conversion_rates_usd` model for the conversion rates. Include a `conversion_rate_id` primary key using `dbt_utils.surrogate_key`. Also, add tests for the primary key to `schema.yml`
 
 ```sql
 with source as (
@@ -167,7 +167,7 @@ from final
 with orders as (
   select
     *
-  from {{ ref(...) }}
+  from {{ ref('stg_ecomm__orders') }}
 ),
 
 rates as (
