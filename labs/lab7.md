@@ -14,7 +14,7 @@
 
 ### 2. Add new ecommerce stores
 
-Your company is opening new ecommerce stores in Germany and Australia! Your data engineering team has modified the ecommerce data pipeline so that it now feeds the orders data into store specific tables: 
+Your company is opening new ecommerce stores in Germany and Australia! Your data engineering team has modified the ecommerce orders pipeline so that it now feeds the orders data into store specific tables: 
 
 * `raw.ecomm.orders_us` (`store_id`: 1),
 * `raw.ecomm.orders_de` (`store_id`: 2), and
