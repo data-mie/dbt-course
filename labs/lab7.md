@@ -13,7 +13,7 @@
 
 ### 2. New ecommerce stores
 
-Your company is opening new ecommerce stores in Germany and Australia! Your data engineering team modifies the ecommerce data pipeline so that it nopw feeds the orders data into store specific tables: 
+Your company is opening new ecommerce stores in Germany and Australia! Your data engineering team has modified the ecommerce data pipeline so that it now feeds the orders data into store specific tables: 
 
 * `raw.ecomm.orders_us` (`store_id`: 1),
 * `raw.ecomm.orders_de` (`store_id`: 2), and
@@ -25,6 +25,7 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
   <summary>👉 Section 2</summary>
 
   (2.1) Add the three orders tables to your `sources.yml`
+
   (2.2) Refactor the `stg_ecomm__orders` model so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
 
   ```sql
@@ -41,6 +42,7 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
     ...
   ```
   (2.3) Preview and inspect the compiled SQL of `stg_ecomm__orders`. How does the `dbt_utils.union_relations` macro differ from a manually constructed union?
+
   (2.4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id`
   ```sql
     with sources as (
@@ -82,6 +84,7 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
     from renamed
   ```
   (2.5) Run the model and its downstream dependencies: `dbt run -s stg_ecomm__orders+`
+  
   (2.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
 
 </details>
