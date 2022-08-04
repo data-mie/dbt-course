@@ -83,7 +83,7 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
         *
     from renamed
   ```
-  (2.5) Run the model and its downstream dependencies: `dbt run -s stg_ecomm__orders+`
+  (2.5) Ensure the model and its downstream depencies run successfully `dbt run -s stg_ecomm__orders+`
 
   (2.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
 
@@ -96,9 +96,9 @@ You receive an email from the data eng team notifying you that they've introduce
 <details>
   <summary>👉 Section 3</summary>
 
-(3.1) Find the duplicates using SQL
+(3.1) Find the duplicates using SQL. How do you write a query that returns the duplicate `order_id` values?
 
-(3.2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`
+(3.2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`. Which columns should you partition and group by?
 ```sql
 ...
 
@@ -109,7 +109,9 @@ renamed as (
 deduplicated as (
     {{
         dbt_utils.deduplicate(
-            ...
+            relation='renamed',
+            partition_by=...,
+            order_by=...
         )
     }}
 )
