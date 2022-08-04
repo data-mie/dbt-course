@@ -80,3 +80,9 @@ models:
       - name: rate_usd
         tests:
           - not_null
+
+  - name: int_ecomm__orders_enriched
+    columns:
+      - name: total_amount_usd
+        tests:
+          - not_null
