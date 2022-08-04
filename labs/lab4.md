@@ -13,7 +13,7 @@ Using a window function, add a column `days_since_last_order` to the `orders` mo
   ```sql
     datediff('day', lag(ordered_at) over (partition by customer_id order by ordered_at), ordered_at)
   ```
-  (2) Execute `dbt run -s order` to make sure your model runs successfully.
+  (2) Execute `dbt run -s orders` to make sure your model runs successfully.
 </details>
 
 ### 2. Filter out employees from the orders and customers models

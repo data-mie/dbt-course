@@ -23,9 +23,10 @@ Welcome to the dbt Course project! If you're here to do the pre-course work, hea
 * [Lab 4: Window Functions, Calendar Spines, and Semi-Structured Data](labs/lab4.md)
 * [Lab 5: Snapshots and Seeds](labs/lab5.md)
 * [Lab 6: Environments, Deployment, and the SDLC](labs/lab6.md)
+* [Lab 7: Data Modeling, Project Structure and dbt Packages](labs/lab7.md)
 * [Lab 8: Incremental Models](labs/lab8.md)
 * [Lab 9: Snowflake Specifics in dbt](labs/lab9.md)
-* [BONUS Lab: Semi-Structured Data and Recursive CTEs](labs/labBONUS.md)
+* [BONUS Lab: Recursive CTEs](labs/labBONUS.md)
 
 ## Resources
 
