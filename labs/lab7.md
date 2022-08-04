@@ -14,7 +14,7 @@
 
 ### 2. Organize models into folders
 
-Organize your models into the following folder hierarchy:
+Organize your models into the following project structure:
 
     models
     ├── staging
@@ -32,7 +32,14 @@ Organize your models into the following folder hierarchy:
     │       ├── customers.sql
     │       └── ...
     ├── calendar.sql
+    ├── schema.yml
+    ├── sources.yml
     └── ...
+
+Also think about the following:
+
+* How would you reorganize sources in the `sources.yml` to better fit the new project structure?
+* How about models in the `schema.yml`? How would you reorganize them?
 
 ### 3. Add new ecommerce stores
 
