@@ -1,6 +1,6 @@
 ## Lab 7: Data Modeling, Project Structure and dbt Packages
 
-### 1. The `dbt_utils` package 
+### 1. Review the `dbt_utils` package 
 
 [dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) contains many useful tests and macros that can be reused across dbt projects. The first task is to:
 
@@ -11,7 +11,7 @@
 
 (1.3) Run `dbt deps` to ensure the required version of `dbt_utils` is installed
 
-### 2. New ecommerce stores
+### 2. Add new ecommerce stores
 
 Your company is opening new ecommerce stores in Germany and Australia! Your data engineering team has modified the ecommerce data pipeline so that it now feeds the orders data into store specific tables: 
 
@@ -89,7 +89,7 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
 
 </details>
 
-### 3. Orders deduplication
+### 3. Deduplicate orders
 
 You receive an email from the data eng team notifying you that they've introduced a bug to the data pipeline which is creating duplicate orders in the new tables. The data must get to production ASAP so there's no time to wait for the data eng team to implement and deploy the fix. Your team decides to deal with the duplicates in dbt and you're tasked with implementing the deduplication logic in `stg_ecomm__orders` so that the deduplication automatically propagates to downstream models.
 
