@@ -19,14 +19,14 @@ Your company is opening new ecommerce stores in Germany and Australia! Your data
 * `raw.ecomm.orders_de` (`store_id`: 2), and
 * `raw.ecomm.orders_au` (`store_id`: 3).
 
-Rewrite the `stg_ecomm__orders` model so that it creates an union of the three orders tables and adds a `store_id` column based on the table from which the order comes from. 
+Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tables and adds a `store_id` column based on the table from which the order comes from. 
 
 <details>
   <summary>👉 Section 2</summary>
 
   (2.1) Add the three orders tables to your `sources.yml`
 
-  (2.2) Refactor the `stg_ecomm__orders` model so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
+  (2.2) Refactor `stg_ecomm__orders` so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
 
   ```sql
     with sources as (
