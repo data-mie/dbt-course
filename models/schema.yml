@@ -83,6 +83,10 @@ models:
 
   - name: int_ecomm__orders_enriched
     columns:
+      - name: order_id
+        tests:
+          - not_null
+          - unique
       - name: total_amount_usd
         tests:
           - not_null
