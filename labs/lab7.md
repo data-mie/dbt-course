@@ -128,5 +128,78 @@ from deduplicated
 
 </details>
 
-### 4. Calculate metrics in a mart model
 
+
+### 4. Add currency conversions
+
+Order amounts in the DE and AU tables are in EUR and AUD currencies, respectively, and they need to be converted to USD. The finance team has provided you with a currency conversion table: `raw.finance.conversion_rates_usd`. You're tasked with the implementation of an intermediate `int_ecomm__orders_enriched` model that converts the orders amounts to USD.
+
+
+<details>
+  <summary>👉 Section 4</summary>
+
+(4.1) Add the conversion rates table to `sources.yml`
+
+(4.2) Create a `stg_finance__conversion_rates_usd` model for the conversion rates. Include a `conversion_rate_id` primary key using `dbt_utils.surrogate_key`. Also, add tests for the primary key
+
+```sql
+with source as (
+    select
+        *
+    from {{ source(...) }}
+),
+
+final as (
+    select
+        {{ dbt_utils.surrogate_key([...]) }} as conversion_rate_id,
+        *
+    from source
+)
+
+select
+    *
+from final
+```
+
+(4.3) Create a `int_ecomm__orders_enriched` model that adds a `total_amount_usd` to `stg_ecomm__orders`
+
+```sql
+with orders as (
+  select
+    *
+  from {{ ref(...) }}
+),
+
+rates as (
+    select
+        *
+    from {{ ref(...) }}
+),
+
+order_rates as (
+  select
+      orders.*,
+      ... as rate_usd
+  from orders
+  left join rates on (
+    ...
+  )
+),
+
+final as (
+    select
+        *,
+        total_amount * rate_usd as total_amount_usd
+    from order_rates
+)
+
+select
+    *
+from final
+```
+
+(4.4) Ensure the model and its upstream depencies run successfully: `dbt run -s +int_ecomm__orders_enriched`
+
+(4.5) Add a `not_null` test for `total_amount_usd` in `int_ecomm__orders_enriched` and run the tests: `dbt test -s +int_ecomm__orders_enriched`
+
+</details>
