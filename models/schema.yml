@@ -70,3 +70,13 @@ models:
         tests:
           - unique
           - not_null
+
+  - name: stg_finance__conversion_rates_usd
+    columns:
+      - name: conversion_rate_id
+        tests:
+          - not_null
+          - unique
+      - name: rate_usd
+        tests:
+          - not_null
