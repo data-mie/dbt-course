@@ -5,7 +5,8 @@
 [dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) contains many useful tests and macros that can be reused across dbt projects. The first task is to:
 
 (1.1) Check the generic tests and macros in `dbt_utils` and discuss the ones you find useful or interesting with your peers
-    * e.g., `expression_is_true`, `at_least_one`, `get_column_values`, `deduplicate`, `star`, `union_relations`
+    
+* e.g., `expression_is_true`, `at_least_one`, `get_column_values`, `deduplicate`, `star`, `union_relations`
 
 (1.2) Make sure you have `dbt_utils` version `>=0.8.5` listed in your project dependencies in the `packages.yml` file
 
