@@ -13,6 +13,7 @@ Welcome to the dbt Course project! If you're here to do the pre-course work, hea
 * [Module 7: Data modelling, project structure, and packages](https://docs.google.com/presentation/d/e/2PACX-1vQPsymQuUh94mp_WWBmL-Tir-IZ94v-t2h8v2xKQXuBNoQlmjqktt5PFU5GHui9emDV_xLCqTHgaYDY/pub?start=false&loop=false&delayms=3000)
 * [Module 8: Incremental models](https://docs.google.com/presentation/d/e/2PACX-1vRWUS9q39u7NP87SSptGTtVj_CQQbgCmEH22GardNMbbhwktADqqV-hMlA1iFbONvIhx-PJE1y12IjD/pub?start=false&loop=false&delayms=3000)
 * [Module 9: Snowflake specifics within dbt](https://docs.google.com/presentation/d/e/2PACX-1vR9XoOZ3GNwhkDlgO2QNuZnf27KEVk-GDT7Ynw1NGWvyKzah3sidPkoezdHZeJdoznZVyDd0DDtkmcj/pub?start=false&loop=false&delayms=3000)
+* [Course wrap-up](https://docs.google.com/presentation/d/e/2PACX-1vSyJyLkLaAeIpdJ7ZeKfB_HwOBbwPYPQ4Zr6aqs--vl2gRaXzkABYJgYP_enKoJy9VzWlP5sz7_Vdvp/pub?start=false&loop=false&delayms=3000)
 
 
 ## Labs
