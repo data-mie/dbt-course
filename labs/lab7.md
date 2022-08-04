@@ -84,18 +84,21 @@ Rewrite the `stg_ecomm__orders` model so that it creates an union of the three o
     from renamed
   ```
   (2.5) Run the model and its downstream dependencies: `dbt run -s stg_ecomm__orders+`
-  
+
   (2.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
 
 </details>
 
 ### 3. Orders deduplication
 
-After reviewing the orders data you notice that there are duplicate orders in the tables. The data engineering team must have introduced a bug to the data pipeline 🤦 The data must get to production ASAP so there's no time to wait for the data eng team to implement and deploy the fix. Your team has decided to deal with the duplicates in dbt and you're tasked with the implementation.
+You receive an email from the data eng team notifying you that they've introduced a bug to the data pipeline which is creating duplicate orders in the new tables. The data must get to production ASAP so there's no time to wait for the data eng team to implement and deploy the fix. Your team decides to deal with the duplicates in dbt and you're tasked with implementing the deduplication logic in `stg_ecomm__orders` so that the deduplication automatically propagates to downstream models.
 
-(1) Find the duplicates
+<details>
+  <summary>👉 Section 3</summary>
 
-(2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`
+(3.1) Find the duplicates using SQL
+
+(3.2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`
 ```sql
 ...
 
@@ -116,14 +119,9 @@ select
 from deduplicated
 ```
 
-(3) Ensure the model and its downstream depencies still run: `dbt run -s stg_ecomm__orders+`
+(3) Ensure the model and its downstream depencies run successfully: `dbt run -s stg_ecomm__orders+`
 
 (4) Add a primary key test for `order_id` in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
-
-<details>
-  <summary>👉 Section 3</summary>
-
-  (1) Todo
 
 </details>
 
