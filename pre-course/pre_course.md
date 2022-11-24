@@ -62,7 +62,7 @@ Type in 'dbt run' in the bar at the bottom of your screen (if it isn't already t
 
 Congratulations! You've just run dbt for the first time in your new project.
 
-[](dbt_cloud_ide.png)
+![dbt Cloud IDE](dbt_cloud_ide.png)
 
 ## 5. Create your first models
 
