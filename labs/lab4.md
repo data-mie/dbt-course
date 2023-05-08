@@ -1,5 +1,7 @@
 ## Lab 4: Window Functions, Calendar Spines, and Semi-Structured Data
 
+❗Remember to create a development branch `lab-4` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### 1. Add a `days_since_last_order` column to the `orders` model.
 
 It's useful for analysis to know how many days had passed between an order and the prior order (for a given customer).

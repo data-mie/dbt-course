@@ -1,5 +1,9 @@
 ## Lab 1: Models, Sources and Docs
 
+### 0. Create a development branch for the lab
+
+Before going into this lab you need to create a development branch where you can make changes to the project. The `main` branch is read-only and therefore cannot be directly written to. To create a new branch click the 'Create branch' in the top left corner, name the branch `lab-1` and click 'Submit'.
+
 ### 1. Re-factor your current model by creating two new staging models
 
 So far, we've created one `customers` model in the [pre-course work](../pre-course/pre_course.md). That model references two raw tables from our warehouse and 'cleans' up some of that data. Create two new models, `stg_ecomm__orders` and `stg_ecomm__customers`, that do that clean-up. Then, re-factor the existing `customers` model to reference those staging models.
@@ -306,6 +310,11 @@ Are there any final changes you want to make? Any models you want to refactor? A
   README.md
   ```
 </details>
+
+### 8. Merging the development branch back to the `main` branch
+
+Now that you've done the lab the last thing to do is to commit your changes and merge the development branch (that you created at the beginning of the lab) to the `main` branch. Just click 'Merge this branch to main' in the top left corner after you've committed your changes and you're all set. Way to go! 💯
+
 
 ## Links and Walkthrough Guides
 

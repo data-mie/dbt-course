@@ -1,5 +1,7 @@
 ## Lab 5: Snapshots and Seeds
 
+❗Remember to create a development branch `lab-5` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### Kick-off discussion
 
 * Are there any tables at your company that would benefit from being snapshotted?

@@ -1,5 +1,7 @@
 ## Lab 9: Snowflake Specifics in dbt
 
+❗Remember to create a development branch `lab-9` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### Kick-Off Discussion
 * How much of what we just discussed is already in place at your company?
 * How much of what we just discussed would be useful to implement at your company?

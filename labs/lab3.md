@@ -1,5 +1,7 @@
 ## Lab 3: CTEs, Subqueries, and Query Optimization
 
+❗Remember to create a development branch `lab-3` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### 1. Re-write the query using CTEs
 
 You received a query from a colleague in the marketing department who was trying to pull some information from your warehouse. Unfortunately, they exclusively used subqueries and you want to clean it up before providing your feedback because you think it will be easier to read.

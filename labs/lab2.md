@@ -1,5 +1,7 @@
 ## Lab 2: Jinja and Testing
 
+❗Remember to create a development branch `lab-2` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ## Kick-off Discussion Questions
 
 1. What are instances where more testing would have been useful at your company? What was the issue? What test would you have added?
