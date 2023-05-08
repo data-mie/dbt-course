@@ -1,5 +1,7 @@
 ## Lab 7: Data Modeling, Project Structure and dbt Packages
 
+❗Remember to create a development branch `lab-7` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### 1. Review the `dbt_utils` package 
 
 [dbt_utils](https://hub.getdbt.com/dbt-labs/dbt_utils/latest/) contains many useful tests and macros that can be reused across dbt projects. The first task is to:

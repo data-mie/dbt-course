@@ -1,5 +1,7 @@
 ## Lab 3: CTEs, Subqueries, and Query Optimization
 
+❗Remember to create a development branch `lab-3` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### 1. Re-write the query using CTEs
 
 You received a query from a colleague in the marketing department who was trying to pull some information from your warehouse. Unfortunately, they exclusively used subqueries and you want to clean it up before providing your feedback because you think it will be easier to read.
@@ -109,6 +111,26 @@ Things to think about:
 
   (4) Execute `dbt run -s +seven_week_active_customers` to make sure your model runs successfully.
 </details>
+
+### 3. [Optional] Using the Snowflake query profiler
+
+If you got this far and still have time left you can try out the Snowflake query profiler.
+
+<details>
+  <summary>👉 Section 3 </summary>
+
+  (1) Open the `seven_week_active_customers` model in the IDE and the click 'Compile' to generate compiled SQL for the model
+
+  (2) Log into Snowflake and create a new worksheet
+
+  (3) Copy the compiled SQL from the dbt Cloud IDE, paste it into the Snowflake worksheet and click 'Run' to execute the query
+
+  (4) Open query history by clicking 'Query ID' in the results section
+
+  (5) Observe the query profile by opening the 'Profile' tab. Can you identify the parts of the query that take longest to evaluate?
+</details>
+
+
 
 ## Links and Walkthrough Guides
 

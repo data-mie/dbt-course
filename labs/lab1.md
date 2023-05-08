@@ -1,5 +1,9 @@
 ## Lab 1: Models, Sources and Docs
 
+### 0. Create a development branch for the lab
+
+Before going into this lab you need to create a development branch where you can make changes to the project. The `main` branch is read-only and therefore cannot be directly written to. To create a new branch click the 'Create branch' in the top left corner, name the branch `lab-1` and click 'Submit'.
+
 ### 1. Re-factor your current model by creating two new staging models
 
 So far, we've created one `customers` model in the [pre-course work](../pre-course/pre_course.md). That model references two raw tables from our warehouse and 'cleans' up some of that data. Create two new models, `stg_ecomm__orders` and `stg_ecomm__customers`, that do that clean-up. Then, re-factor the existing `customers` model to reference those staging models.
@@ -10,26 +14,56 @@ So far, we've created one `customers` model in the [pre-course work](../pre-cour
   (1) Create a new file in the `models/` directory called `stg_ecomm__orders.sql` that contains the following SQL:
 
   ```sql
+  with source as (
+    select
+      *
+    from raw.ecomm.orders
+  ),
+
+  renamed as (
+    select
+      id as order_id,
+      *,
+      created_at as ordered_at,
+      status as order_status
+    from source
+  ),
+
+  final as (
+    select
+      *
+    from renamed
+  )
+
   select
-    id as order_id,
-    customer_id,
-    created_at as ordered_at,
-    status as order_status,
-    total_amount,
-    store_id
-  from raw.ecomm.orders
+    *
+  from final
   ```
   (2) Create a new file in the `models/` directory called `stg_ecomm__customers.sql` that contains the following SQL:
 
   ```sql
+  with source as (
+    select
+      *
+    from raw.ecomm.customers
+  ),
+
+  renamed as (
+    select
+      id as customer_id,
+      *
+    from source
+  ),
+
+  final as (
+    select
+      *
+    from renamed
+  )
+
   select
-    id as customer_id,
-    first_name,
-    last_name,
-    email,
-    address,
-    phone_number
-  from raw.ecomm.customers
+    *
+  from final
   ```
   (3) Re-factor the top two CTEs of our original `customers` model to select from our new models using the `ref` macro. The first CTE should now be:
 
@@ -127,7 +161,7 @@ Things to think about:
 
 ### 4. Add a new source table to the project
 
-A new table has arrived in our warehouse, `deliveries`. The `deliveries` table looks like this:
+A new table has arrived in our warehouse, `raw.ecomm.deliveries`. The `deliveries` table looks like this:
 
 | id | order_id | picked_up_at     | delivered_at     | status    | _synced_at       |
 |----|----------|------------------|------------------|-----------|------------------|
@@ -155,14 +189,29 @@ Create an `orders` model that calculates `delivery_time_from_collection` and `de
 
   (1) While we could reference the source table directly in the orders model, we'll follow the standard we've set above and create an `stg_` model for the deliveries table. Create a new file in the `models/` directory called `stg_ecomm__deliveries.sql` that contains the following SQL:
   ```sql
+  with source as (
+    select
+        *
+    from {{ source('ecomm', 'deliveries') }}
+  ),
+
+  renamed as (
+    select
+      id as delivery_id,
+      *,
+      status as delivery_status
+    from source
+  ),
+
+  final as (
+    select
+      *
+    from renamed
+  )
+
   select
-    id as delivery_id,
-    order_id,
-    picked_up_at,
-    delivered_at,
-    status as delivery_status,
-    _synced_at
-  from {{ source('ecomm', 'deliveries') }}
+    *
+  from final
   ```
 
   (2) Create a new file in the `models/` directory called `orders.sql` that contains the following SQL:
@@ -194,8 +243,8 @@ Create an `orders` model that calculates `delivery_time_from_collection` and `de
       orders.order_status,
       orders.total_amount,
       orders.store_id,
-      datediff('minutes',orders.ordered_at,deliveries_filtered.delivered_at) as delivery_time_from_order,
-      datediff('minutes',deliveries_filtered.picked_up_at,deliveries_filtered.delivered_at) as delivery_time_from_collection
+      datediff('minutes', orders.ordered_at, deliveries_filtered.delivered_at) as delivery_time_from_order,
+      datediff('minutes', deliveries_filtered.picked_up_at, deliveries_filtered.delivered_at) as delivery_time_from_collection
     from orders
     left join deliveries_filtered on (orders.order_id = deliveries_filtered.order_id)
   )
@@ -261,6 +310,11 @@ Are there any final changes you want to make? Any models you want to refactor? A
   README.md
   ```
 </details>
+
+### 8. Merging the development branch back to the `main` branch
+
+Now that you've done the lab the last thing to do is to commit your changes and merge the development branch (that you created at the beginning of the lab) to the `main` branch. Just click 'Merge this branch to main' in the top left corner after you've committed your changes and you're all set. Way to go! 💯
+
 
 ## Links and Walkthrough Guides
 

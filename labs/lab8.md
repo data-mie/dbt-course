@@ -1,5 +1,7 @@
 ## Lab 8: Incremental Models
 
+❗Remember to create a development branch `lab-8` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ### 1. Make the orders model incremental
 
 We've had a huge spike in order volumes because of Covid and as a result our `orders` model is taking longer and longer to build.

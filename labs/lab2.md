@@ -1,5 +1,7 @@
 ## Lab 2: Jinja and Testing
 
+❗Remember to create a development branch `lab-2` at the beginning of the lab and at the end commit your changes to it and then merge the branch back to `main`.
+
 ## Kick-off Discussion Questions
 
 1. What are instances where more testing would have been useful at your company? What was the issue? What test would you have added?
@@ -44,11 +46,10 @@ Things to think about:
 <details>
   <summary>👉 Section 2</summary>
 
-  (1) Given the SQL for the three columns will be _almost_ identical, we could use a Jinja `for` loop here. Add the following SQL to your `customer_metrics` CTE:
+  (1) Given the SQL for the three columns will be _almost_ identical, we could use a Jinja `for` loop here. Add the following SQL to your `customer_metrics` CTE in the `customers` model:
   ```sql
   {% for days in [30,90,360] %}
-  count(case when ordered_at > current_date - {{ days }} then 1 end) as count_orders_last_{{ days }}_days
-  {% if not loop.last %} , {% endif %}
+    count(case when ordered_at > current_date - {{ days }} then 1 end) as count_orders_last_{{ days }}_days{% if not loop.last %},{% endif %}
   {% endfor %}
   ```
   (2) Add your three new columns to the `joined` CTE.

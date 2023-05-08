@@ -76,8 +76,6 @@ The final step is to create your first dbt model. We're going to create a basic 
 5. Once pasted, click 'Preview' in the editor. Click 'Save' in the top right corner to save the file.
 6. Finally, we want to build this model as an object in our database. Once again, enter `dbt run` at the bottom of the page and click enter. You should now see your new `customers` model build.
 
-You've now written your first dbt model and have completed the pre-course requirements. I'm looking forward to teaching all of you in the upcoming course!
-
 ```sql
 with orders as (
     select
@@ -126,3 +124,12 @@ select
 from joined
 ```
 
+## 6. Wrapping up
+
+Now that you have added the `customers` model you need to commit your changes to the git repository:
+
+1. Click the 'Commit and sync' button in the top left corner
+2. Enter a commit message (e.g., 'Add customers model')
+3. Click 'Commit Changes' to do the commit
+
+You've now written your first dbt model and have completed the pre-course requirements. I'm looking forward to teaching all of you in the upcoming course!
