@@ -44,11 +44,10 @@ Things to think about:
 <details>
   <summary>👉 Section 2</summary>
 
-  (1) Given the SQL for the three columns will be _almost_ identical, we could use a Jinja `for` loop here. Add the following SQL to your `customer_metrics` CTE:
+  (1) Given the SQL for the three columns will be _almost_ identical, we could use a Jinja `for` loop here. Add the following SQL to your `customer_metrics` CTE in the `customers` model:
   ```sql
   {% for days in [30,90,360] %}
-  count(case when ordered_at > current_date - {{ days }} then 1 end) as count_orders_last_{{ days }}_days
-  {% if not loop.last %} , {% endif %}
+    count(case when ordered_at > current_date - {{ days }} then 1 end) as count_orders_last_{{ days }}_days{% if not loop.last %},{% endif %}
   {% endfor %}
   ```
   (2) Add your three new columns to the `joined` CTE.
