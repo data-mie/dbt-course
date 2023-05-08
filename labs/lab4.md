@@ -95,10 +95,10 @@ The data for this exercise can be found at `raw.geo.countries`.
   ```sql
     select
         country,
-        s.value:state as state,
-        s.value:zipcodes as zipcodes
+        state.value:state as state,
+        state.value:zipcodes as zip_codes
     from raw.geo.countries
-    left join lateral flatten (input => states) as s
+    left join lateral flatten (input => states) as state
   ```
   We now have a record for each state, which we can see has another array in it called `zipcodes`.
 
@@ -106,24 +106,24 @@ The data for this exercise can be found at `raw.geo.countries`.
   ```sql
     select
         country,
-        s.value:state as state,
-        c.value:zipcode as zipcode,
-        c.value:city as city
+        state.value:state as state,
+        zip_code.value:zipcode as zip_code,
+        zip_code.value:city as city
     from raw.geo.countries
-    left join lateral flatten (input => states) as s
-    left join lateral flatten (input => s.value:zipcodes) as c
+    left join lateral flatten (input => states) as state
+    left join lateral flatten (input => state.value:zipcodes) as zip_code
   ```
 
   (4) It looks like some of our columns aren't coming through as the correct data type. Let's cast them to strings:
   ```sql
     select
         country,
-        s.value:state::varchar as state,
-        c.value:zipcode::varchar as zipcode,
-        c.value:city::varchar as city
+        state.value:state::varchar as state,
+        zip_code.value:zipcode::varchar as zip_code,
+        zip_code.value:city::varchar as city
     from raw.geo.countries
-    left join lateral flatten (input => states) as s
-    left join lateral flatten (input => s.value:zipcodes) as c
+    left join lateral flatten (input => states) as state
+    left join lateral flatten (input => state.value:zipcodes) as zip_code
   ```
   We should now have a complete query.
 
@@ -146,9 +146,9 @@ Then, create a model called `customers_daily` that uses our snapshot data and th
   ```yaml
   packages:
     - package: dbt-labs/dbt_utils
-      version: 0.8.1
+      version: 1.0.0
     - package: calogica/dbt_date
-      version: 0.5.3
+      version: 0.7.2
   ```
   Make sure you run `dbt deps` so the packages are installed in your project.
 
