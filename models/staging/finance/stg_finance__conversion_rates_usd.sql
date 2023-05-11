@@ -6,7 +6,7 @@ with source as (
 
 final as (
     select
-        {{ dbt_utils.surrogate_key(["date_day", "currency"]) }} as conversion_rate_id,
+        {{ dbt_utils.generate_surrogate_key(["date_day", "currency"]) }} as conversion_rate_id,
         *
     from source
 )
