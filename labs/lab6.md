@@ -11,7 +11,7 @@ It's hard to test this without a 'job', so...
 <details>
   <summary>👉 Section 1</summary>
 
-  (1) Go to the Home section of dbt Cloud (look in the hamburger menu at the top left corner.)
+  (1) Go to the Home section of dbt Cloud
 
   (2) Make sure you're operating in your project. This will be visible in the top navigation bar. If you're not, change the project.
 
