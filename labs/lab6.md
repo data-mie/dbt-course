@@ -4,7 +4,7 @@
 
 You don't have a deployment environment set up in dbt Cloud for your project yet.
 
-Set up a new deployment environment, using dbt 1.0 and have the models build into a schema called production_[first initial + last name]. (This is so your production models don't conflict with each other.)
+Set up a new deployment environment, using dbt 1.5 and have the models build into a schema called production_[first initial + last name]. (This is so your production models don't conflict with each other.)
 
 It's hard to test this without a 'job', so...
 
