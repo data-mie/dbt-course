@@ -10,7 +10,7 @@
     
 * e.g., `expression_is_true`, `at_least_one`, `get_column_values`, `deduplicate`, `star`, `union_relations`
 
-(1.2) Make sure you have `dbt_utils` version `>=0.8.5` listed in your project dependencies in the `packages.yml` file
+(1.2) Make sure you have `dbt_utils` version `>=1.1.0` listed in your project dependencies in the `packages.yml` file
 
 (1.3) Run `dbt deps` to ensure the required version of `dbt_utils` is installed
 
@@ -169,7 +169,7 @@ Order amounts in the DE and AU tables are in EUR and AUD currencies, respectivel
 
 (5.1) Add the `finance` source and the conversion rates table to `sources.yml`
 
-(5.2) Create a `stg_finance__conversion_rates_usd` model in a `models/staging/finance` folder. Include a `conversion_rate_id` primary key using `dbt_utils.surrogate_key`. Also, add tests for the primary key to `schema.yml`
+(5.2) Create a `stg_finance__conversion_rates_usd` model in a `models/staging/finance` folder. Include a `conversion_rate_id` primary key using `dbt_utils.generate_surrogate_key`. Also, add tests for the primary key to `schema.yml`
 
 ```sql
 with source as (
@@ -180,7 +180,7 @@ with source as (
 
 final as (
     select
-        {{ dbt_utils.surrogate_key([...]) }} as conversion_rate_id,
+        {{ dbt_utils.generate_surrogate_key([...]) }} as conversion_rate_id,
         *
     from source
 )
