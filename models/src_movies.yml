@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: movies
+    database: raw
+    tables:
+      - name: ratings
+        description: Each record in this table represents a movie rating by a user
