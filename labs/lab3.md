@@ -165,6 +165,7 @@ In this exercise you get to try out table clustering and see how it improves que
   (6) Add clustering to the `stg_movies__ratings` model by adding a `cluster_by` configuration:
 
   ```sql
+  -- Replace <column> with the column name you want to cluster the table by!
   {{ config(materialized='table', cluster_by=['<column>'])}}
   ```
 
