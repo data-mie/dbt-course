@@ -1,6 +1,11 @@
 # dbt-course
 
-Welcome to the dbt Course project! If you're here to do the pre-course work, head to [pre-course/pre_course.md](pre-course/pre_course.md).
+Welcome to the dbt Course project! If you're here to do the pre-course work, head to 
+
+* [pre-course/dbt_cloud.md](pre-course/dbt_cloud.md), or
+* [pre-course/dbt_core.md](pre-course/dbt_core.md)
+
+depending on whether you'll be using dbt Cloud or dbt Core during the class.
 
 ## Slides
 
