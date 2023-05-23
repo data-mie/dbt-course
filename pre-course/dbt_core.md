@@ -30,7 +30,24 @@ Here are the instructions for setting up your dbt Core project that you'll be de
 4. Activate the virtual environment: `source venv/bin/activate`
     * You need to reactivate the virtual environment every time you start working on the project
 5. Install dbt Core with the Snowflake adapter: `pip install dbt-snowflake==1.5`
-6. Create a `dbt_project.yml` file in the course project folder:
+6. Add a Snowflake connection profile to your `<your-home-folder>/.dbt/profiles.yml`:
+
+```yml
+dbt_course:
+  outputs:
+    dev:
+      account: <account>                        # Replace <account> with account name from the welcome email
+      database: <database>                      # Replace <database> with database name from the welcome email
+      schema: dbt_<first initial><last name>    # Replace <first initial> and <last name>, i.e. for Simo Tumelius it would be dbt_stumelius
+      role: <role>                              # Replace <role> with role name from the welcome email
+      warehouse: <warehouse>                    # Replace <warehouse> with warehouse name from the welcome email
+      user: <user>                              # Replace <user> with user name from the welcome email
+      password: <password>                      # Replace <password> with password from the welcome email
+      threads: 4
+      type: snowflake
+  target: dev
+```
+7. Create a `dbt_project.yml` file in the course project folder:
 
 ```yml
 # Name your project! Project names should contain only lowercase characters
@@ -70,7 +87,7 @@ models:
     # Applies to all files under models/
     +materialized: view
 ```
-7. Create a `.gitignore` file in the course project folder to prevent unnecessary files to be committed to the git repository:
+8. Create a `.gitignore` file in the course project folder to prevent unnecessary files to be committed to the git repository:
 
 ```
 venv/
@@ -78,9 +95,9 @@ target/
 logs/
 dbt_packages/
 ```
-8. Stage your changes: `git add dbt_project.yml .gitignore`
-9. Do the initial commit: `git commit -m "Initialize dbt project"`
-10. Rename the root branch as `main`: `git branch -M main`
+9. Stage your changes: `git add dbt_project.yml .gitignore`
+10. Do the initial commit: `git commit -m "Initialize dbt project"`
+11. Rename the root branch as `main`: `git branch -M main`
 
 ## 3. Create your first models
 
