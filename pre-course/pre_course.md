@@ -9,8 +9,8 @@ If at any point you have any questions or something doesn't appear to be working
 You will have received your Snowflake user name in the introduction message. Once you log into Snowflake, you should see the Snowflake editor (**if prompted, select Classic UI instead of Snowsight**). Run the following query to verify you have the correct permissions:
 
 ```sql
-use role transformer;
-use warehouse compute_wh;
+use role <role>;            -- Replace <role> with role name from the welcome email
+use warehouse <warehouse>;  -- Replace <warehouse> with warehouse name from the welcome email
 
 select
     *
@@ -33,10 +33,10 @@ For the purposes of the course, you'll be creating your own dbt Cloud project. T
 3. Project name: Name the project 'dbt training - (first initial) (last name)'. For Simo Tumelius, this would be 'dbt training - S Tumelius'.
 4. Warehouse: Select Snowflake
 5. Environment: Name the environment 'Snowflake'. Under Settings fill the following details:
-    - Account: wpa36811
-    - Database: analytics
-    - Warehouse: compute_wh
-    - Role: transformer
+    - Account: (see welcome email)
+    - Database: (see welcome email)
+    - Warehouse: (see welcome email)
+    - Role: (see welcome email)
     - Session Keep Alive: No
     - Auth Method: Username & Password
     - Username: Your Snowflake username
