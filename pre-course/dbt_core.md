@@ -28,7 +28,7 @@ Here are the instructions for setting up your dbt Core project that you'll be de
 2. Initialize a new git repository in the course project folder: `git init`
 3. Create a Python virtual environment in the course project folder: `python3 -m virtualenv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
-    * You need to reactivate the virtual environment every time you start working on the project
+    * Note that you have to reactivate the virtual environment every time you start working on the project
 5. Install dbt Core with the Snowflake adapter: `pip install dbt-snowflake==1.5`
 6. Add a Snowflake connection profile to your `<your-home-folder>/.dbt/profiles.yml`:
 
