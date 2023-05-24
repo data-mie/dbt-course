@@ -38,7 +38,7 @@ dbt_course:
     dev:
       account: <account>                        # Replace <account> with account name from the welcome email
       database: <database>                      # Replace <database> with database name from the welcome email
-      schema: dbt_<first initial><last name>    # Replace <first initial> and <last name>, i.e. for Simo Tumelius it would be dbt_stumelius
+      schema: <schema>                          # Replace <schema> with schema name from the welcome email
       role: <role>                              # Replace <role> with role name from the welcome email
       warehouse: <warehouse>                    # Replace <warehouse> with warehouse name from the welcome email
       user: <user>                              # Replace <user> with user name from the welcome email
