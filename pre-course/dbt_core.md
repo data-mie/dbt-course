@@ -31,7 +31,7 @@ To ensure a consistent learning experience, please follow these steps to set up 
 3. Create a Python virtual environment in the course project folder: `python3 -m virtualenv venv`
 4. Activate the virtual environment: `source venv/bin/activate`
     * Note that you have to reactivate the virtual environment every time you start working on the project
-5. Install dbt Core with the Snowflake adapter: `pip install dbt-snowflake==1.5`
+5. Install dbt Core with the Snowflake adapter: `python -m pip install dbt-snowflake==1.5`
 6. Add a Snowflake connection profile to your `<your-home-folder>/.dbt/profiles.yml`:
 
 ```yml
