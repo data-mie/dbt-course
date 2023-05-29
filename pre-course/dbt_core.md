@@ -20,9 +20,11 @@ limit 100;
 
 If you see orders data, you're good to go!
 
-## 2. Create your dbt Core project
+## 2. Create your dbt development environment
 
-Here are the instructions for setting up your dbt Core project that you'll be developing over the course:
+If you already have a local dbt development environment set up, please note that the version of dbt we'll be using during this course may differ from the version you have in your organization. Therefore, it's necessary to create an isolated development environment specifically for this course.
+
+To ensure a consistent learning experience, please follow these steps to set up your isolated environment:
 
 1. Create a folder for the course project (e.g., `<your-home-folder>/projects/dbt-course`)
 2. Initialize a new git repository in the course project folder: `git init`
@@ -98,6 +100,8 @@ dbt_packages/
 9. Stage your changes: `git add dbt_project.yml .gitignore`
 10. Do the initial commit: `git commit -m "Initialize dbt project"`
 11. Rename the root branch as `main`: `git branch -M main`
+
+And that's it, now you have a virtual environment fully configured and ready for development. Please ensure that you use this isolated development environment for the duration of the course to avoid any compatibility issues and ensure a smooth learning experience.
 
 ## 3. Create your first models
 
