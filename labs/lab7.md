@@ -73,51 +73,43 @@ Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tabl
 
     ...
   ```
+
   (3.3) Preview and inspect the compiled SQL of `stg_ecomm__orders`. How does the `dbt_utils.union_relations` macro differ from a manually constructed union?
 
   (3.4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id`
   ```sql
-    with sources as (
-        {{
-            dbt_utils.union_relations(
-                relations=[
-                    source('ecomm', 'orders_us'),
-                    source('ecomm', 'orders_de'),
-                    source('ecomm', 'orders_au')
-                ],
-            )
-        }}
-    ),
-
     store_codes as (
         select
             *,
-            ... as store_code
+            split_part(split_part(_dbt_source_relation, '.', 3), '_', 2) as store_code
         from sources
     ),
 
     store_ids as (
         select
             *,
-            ... as store_id
+            case
+                when store_code = 'us' then 1
+                when store_code = 'de' then 2
+                when store_code = 'au' then 3
+            end as store_id
         from store_codes
     ),
 
     renamed as (
         select
-            *,                  -- Include all original columns in the staging layer
+            *,
             id as order_id,
-            ...
+            created_at as ordered_at,
+            status as order_status
         from store_ids
-    )
+    ),
 
-    select
-        *
-    from renamed
+    ...
   ```
   (3.5) Ensure the model and its downstream depencies run successfully `dbt run -s stg_ecomm__orders+`
 
-  (3.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`
+  (3.6) Add a `not_null` test for the `store_id` column in `stg_ecomm__orders` and run the tests: `dbt test -s stg_ecomm__orders+`. Note that the `stg_ecomm__orders` unique test is failing and we'll come to that in the next section of the lab.
 
 </details>
 
@@ -128,29 +120,35 @@ You receive an email from the data eng team notifying you that they've introduce
 <details>
   <summary>👉 Section 4</summary>
 
-(4.1) Find the duplicates using SQL. How do you write a query that returns the duplicate `order_id` values?
+(4.1) Find the duplicates using SQL:
+
+```sql
+select
+    *
+from analytics.dbt_<first_initial><last_name>.stg_ecomm__orders
+where order_id in (
+    select
+        order_id
+    from analytics.dbt_<first_initial><last_name>.stg_ecomm__orders
+    group by 1
+    having count(*) > 1
+)
+order by order_id
+```
 
 (4.2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`. Which columns should you partition and group by?
 ```sql
-...
-
-renamed as (
-    ...
-),
-
 deduplicated as (
     {{
         dbt_utils.deduplicate(
             relation='renamed',
-            partition_by=...,
-            order_by=...
+            partition_by='<partition-by-column>',
+            order_by='<order-by-column> desc'
         )
     }}
-)
+),
 
-select
-    *
-from deduplicated
+...
 ```
 
 (4.3) Ensure the model and its downstream depencies run successfully: `dbt run -s stg_ecomm__orders+`
@@ -167,7 +165,7 @@ Order amounts in the DE and AU tables are in EUR and AUD currencies, respectivel
 <details>
   <summary>👉 Section 5</summary>
 
-(5.1) Add the `finance` source and the conversion rates table to `sources.yml`
+(5.1) Add the `finance` source with the `conversion_rates_usd` table to `sources.yml`
 
 (5.2) Create a `stg_finance__conversion_rates_usd` model in a `models/staging/finance` folder. Include a `conversion_rate_id` primary key using `dbt_utils.generate_surrogate_key`. Also, add tests for the primary key to `schema.yml`
 
@@ -175,12 +173,12 @@ Order amounts in the DE and AU tables are in EUR and AUD currencies, respectivel
 with source as (
     select
         *
-    from {{ source(...) }}
+    from {{ source('finance', 'conversion_rates_usd') }}
 ),
 
 final as (
     select
-        {{ dbt_utils.generate_surrogate_key([...]) }} as conversion_rate_id,
+        {{ dbt_utils.generate_surrogate_key(["date_day", "currency"]) }} as conversion_rate_id,
         *
     from source
 )
@@ -190,7 +188,7 @@ select
 from final
 ```
 
-(5.3) Create a `int_ecomm__orders_enriched` model in the `models/staging/ecomm` folder that adds a `total_amount_usd` to `stg_ecomm__orders`
+(5.3) Create a `int_ecomm__orders_enriched` model in the `models/intermediate/ecomm` folder that adds a `total_amount_usd` to `stg_ecomm__orders`
 
 ```sql
 with orders as (
@@ -202,7 +200,7 @@ with orders as (
 rates as (
     select
         *
-    from {{ ref(...) }}
+    from {{ ref('stg_finance__conversion_rates_usd') }}
 ),
 
 order_rates as (
