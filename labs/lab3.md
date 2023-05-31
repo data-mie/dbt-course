@@ -119,7 +119,7 @@ In this exercise you get to try out table clustering and see how it improves que
 <details>
   <summary>👉 Section 3 </summary>
 
-  (1) Add a new `movies` source in the `models/sources.yml` file
+  (1) Add a new `movies` source with the `ratings` table in the `models/sources.yml` file
 
   (2) Create a new file `stg_movies__ratings.sql` in our `models/` directory
 
