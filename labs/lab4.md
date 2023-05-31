@@ -61,7 +61,7 @@ Things to think about:
 <details>
   <summary>👉 Section 3</summary>
 
-  (1) Add a new source for the Stripe data.
+  (1) Add a new `stripe` source with the `payments` table for the Stripe data in the `models/sources.yml` file
 
   (2) Create a new file `stg_stripe__payments.sql` in our `models/` directory.
 
