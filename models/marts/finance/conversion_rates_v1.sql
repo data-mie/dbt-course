@@ -9,7 +9,7 @@ fields as (
         conversion_rate_id,
         date_day,
         currency,
-        rate_usd::number(38, 6) as rate_usd
+        rate_usd as rate_usd
     from rates_usd
 ),
 
