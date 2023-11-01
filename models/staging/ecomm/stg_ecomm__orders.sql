@@ -37,10 +37,20 @@ renamed as (
     from store_ids
 ),
 
+add_us_store_currency as (
+    select
+        * exclude (currency),
+        case
+            when store_code = 'us' then 'USD'    
+            else currency
+        end as currency
+    from renamed
+),
+
 deduplicated as (
     {{
         dbt_utils.deduplicate(
-            relation='renamed',
+            relation='add_us_store_currency',
             partition_by='order_id',
             order_by='_synced_at desc',
         )
