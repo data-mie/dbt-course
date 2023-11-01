@@ -66,7 +66,7 @@ models:
         columns:
           - include: all
             exclude: [rate, source_currency, target_currency]
-      - v: 2 # Prerelease version. Renamed two columns -- this is a breaking change!
+      - v: 2 # Renamed rate_usd as rate and currency as source_curreny. Added target_currency -- This is a breaking change!
         columns:
           - include: all
             exclude: [rate_usd, currency]
