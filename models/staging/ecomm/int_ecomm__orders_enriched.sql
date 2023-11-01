@@ -13,14 +13,12 @@ rates as (
 order_rates as (
   select
       orders.*,
-      case
-        when orders.store_code = 'us' then 1
-        else rates.rate_usd
-      end as rate_usd
+      rates.rate as rate_usd
   from orders
   left join rates on (
     orders.created_at::date = rates.date_day
-    and orders.currency = rates.currency
+    and orders.currency = rates.source_currency
+    and rates.target_currency = 'USD'
   )
 ),
 
