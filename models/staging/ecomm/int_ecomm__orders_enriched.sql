@@ -7,7 +7,7 @@ with orders as (
 rates as (
     select
         *
-    from {{ ref('stg_finance__conversion_rates_usd') }}
+    from {{ ref('conversion_rates') }}
 ),
 
 order_rates as (
