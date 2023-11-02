@@ -1,25 +1,6 @@
 # dbt-course
 
-Welcome to the dbt Course project! If you're here to do the pre-course work, head to 
-
-* [pre-course/dbt_cloud.md](pre-course/dbt_cloud.md), or
-* [pre-course/dbt_core.md](pre-course/dbt_core.md)
-
-depending on whether you'll be using dbt Cloud or dbt Core during the class.
-
-## Slides
-
-* [Module 1: Models, Sources and Docs](https://docs.google.com/presentation/d/e/2PACX-1vRUnKXbE_NCXgJEaL8J_fuWngTWu91NXYgxqVNI8iUlsieb3C4GgoltCT7-y0ne-RcwqJxcAVG6FX6p/pub?start=false&loop=false&delayms=3000)
-* [Module 2: Jinja and Testing](https://docs.google.com/presentation/d/e/2PACX-1vT7ouSIof8dcgeXi9OMLX49j_gexKE0UEMSbGiCc4x73LCUqCR_5i6VBeQFAEKMaOUac16IG0LIAyjv/pub?start=false&loop=false&delayms=3000)
-* [Module 3: CTEs vs Subqueries, query optimization](https://docs.google.com/presentation/d/e/2PACX-1vS2W8eVxQ23gHWPjTJ_MjLIkNmXEy2zq9P98HHKeg16_i8cU9ck0hxLsMMCua-B4huMlsRIlRx4FUy6/pub?start=false&loop=false&delayms=3000)
-* [Module 4: Window Functions,  Calendar Spines, and Semi-Structured Data](https://docs.google.com/presentation/d/e/2PACX-1vSNhM6vzlYoK85kp641XyEDXZDXVY77_SOzFk4nfvi9NCMNJYeTDisSQnNKpW_0s9im4T8pQxKGZEPy/pub?start=false&loop=false&delayms=3000)
-* [Module 5: Snapshots and Seeds](https://docs.google.com/presentation/d/e/2PACX-1vSF6WJ6qG5IVc9j7CoKWXc0p-pT7SsoeIiF--5lPEPbwiRVftUGZ34EGxv1NvyCZrkz3oZ70k1dvDlC/pub?start=false&loop=false&delayms=3000)
-* [Module 6: Environments, Deployment and the Software Development Life Cycle](https://docs.google.com/presentation/d/e/2PACX-1vRixqOiVnj_Suba8Geuu9AgSv4FuO6GPt_oDMGtwhLaSDZXNcHOY9lhRuwVBoCWFQcTwtaFDuNiKtgk/pub?start=false&loop=false&delayms=3000)
-* [Module 7: Data modelling, project structure, and packages](https://docs.google.com/presentation/d/e/2PACX-1vQPsymQuUh94mp_WWBmL-Tir-IZ94v-t2h8v2xKQXuBNoQlmjqktt5PFU5GHui9emDV_xLCqTHgaYDY/pub?start=false&loop=false&delayms=3000)
-* [Module 8: Incremental models](https://docs.google.com/presentation/d/e/2PACX-1vRWUS9q39u7NP87SSptGTtVj_CQQbgCmEH22GardNMbbhwktADqqV-hMlA1iFbONvIhx-PJE1y12IjD/pub?start=false&loop=false&delayms=3000)
-* [Module 9: Snowflake specifics within dbt](https://docs.google.com/presentation/d/e/2PACX-1vR9XoOZ3GNwhkDlgO2QNuZnf27KEVk-GDT7Ynw1NGWvyKzah3sidPkoezdHZeJdoznZVyDd0DDtkmcj/pub?start=false&loop=false&delayms=3000)
-* [Course wrap-up](https://docs.google.com/presentation/d/e/2PACX-1vSyJyLkLaAeIpdJ7ZeKfB_HwOBbwPYPQ4Zr6aqs--vl2gRaXzkABYJgYP_enKoJy9VzWlP5sz7_Vdvp/pub?start=false&loop=false&delayms=3000)
-
+Welcome to the dbt Course project! If you're here to do the pre-course work, head to [pre-course/pre_course.md](pre-course/pre_course.md).
 
 ## Labs
 
@@ -32,6 +13,7 @@ depending on whether you'll be using dbt Cloud or dbt Core during the class.
 * [Lab 7: Data Modeling, Project Structure and dbt Packages](labs/lab7.md)
 * [Lab 8: Incremental Models](labs/lab8.md)
 * [Lab 9: Snowflake Specifics in dbt](labs/lab9.md)
+* [Lab 10: Model governance and the dbt Mesh architecture](labs/lab10.md)
 * [BONUS Lab: Recursive CTEs](labs/labBONUS.md)
 
 ## Resources
