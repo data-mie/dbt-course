@@ -11,25 +11,26 @@ Your data organization has made the decision to split the monolithic project ver
 
 <details>
   <summary>👉 Section 1</summary>
-    (1) Create a new `dbt_course_finance` subfolder in the project root directory and copy the `dbt_project.yml` to the new folder and update contents to reflect the new project
 
-    (2) Move `finance` models into the new folder
+  (1) Create a new `dbt_course_finance` subfolder in the project root directory and copy the `dbt_project.yml` to the new folder and update contents to reflect the new project
 
-    (3) Run `dbt run` in the `dbt_course_finance` subfolder to make sure everything works. If not, fix it!
+  (2) Move `finance` models into the new folder
 
-    (4) Repeat steps 1-2 for the `dbt_course_ecommerce` project so that it includes `ecomm` and `stripe` models
+  (3) Run `dbt run` in the `dbt_course_finance` subfolder to make sure everything works. If not, fix it!
 
-    (5) Import the `dbt_course_finance` project into `dbt_course_ecommerce` project by adding it as a package and then running `dbt deps`:
+  (4) Repeat steps 1-2 for the `dbt_course_ecommerce` project so that it includes `ecomm` and `stripe` models
 
-    ```yml
-    packages:
-      - local: ../finance
-      ...
-    ```
+  (5) Import the `dbt_course_finance` project into `dbt_course_ecommerce` project by adding it as a package and then running `dbt deps`:
 
-    (6) Upgrade refs to cross-project refs in the ecommerce project
+  ```yml
+  packages:
+    - local: ../finance
+    ...
+  ```
 
-    (7) Run `dbt run` in the `dbt_course_ecommerce` project. What happens?
+  (6) Upgrade refs to cross-project refs in the ecommerce project
+
+  (7) Run `dbt run` in the `dbt_course_ecommerce` project. What happens?
 </details>
 
 
@@ -39,35 +40,36 @@ Your finance team has asked you to create a new `conversion_rates` mart model in
 
 <details>
   <summary>👉 Section 2</summary>
-    (1) Add the `models/marts/conversion_rates.sql` model in the finance project
 
-    ```sql
-    with rates_usd as (
-        select
-            *
-        from {{ ref('stg_finance__conversion_rates_usd') }}
-    ),
+  (1) Add `models/marts/conversion_rates.sql` to the finance project
 
-    fields as (
-        select
-            ... -- TODO: Explicitly select the fields you need
-        from rates_usd
-    ),
+  ```sql
+  with rates_usd as (
+      select
+          *
+      from {{ ref('stg_finance__conversion_rates_usd') }}
+  ),
 
-    final as (
-        select
-            *
-        from fields
-    )
+  fields as (
+      select
+          ... -- TODO: Explicitly select the fields you need
+      from rates_usd
+  ),
 
-    select
-        *
-    from final
-    ```
+  final as (
+      select
+          *
+      from fields
+  )
 
-    (2) Update all downstream `stg_finance__conversion_rates_usd` refs to `conversion_rates`
+  select
+      *
+  from final
+  ```
 
-    (3) Ensure the model runs `dbt run -s conversion_rates`
+  (2) Update all downstream `stg_finance__conversion_rates_usd` refs to `conversion_rates`
+
+  (3) Ensure the model runs `dbt run -s conversion_rates`
 </details>
 
 ### 3. Add a model contract for the `conversion_rates` model
@@ -77,49 +79,50 @@ Now that you have the `conversion_rates` model as the point of abstraction for c
 
 <details>
   <summary>👉 Section 3</summary>
-    (1) Add a `models/marts/conversion_rates.yml` schema YML file to the finance project
 
-    (2) Enforce the model contract in the YML
+  (1) Add a `models/marts/conversion_rates.yml` schema YML file to the finance project
 
-    ```yml
-    version: 2
+  (2) Enforce the model contract in the YML
 
-    models:
-      - name: conversion_rates
-        description: USD currency conversion rates at a daily level
-        config:
-          contract:
-            enforced: true
-    ```
+  ```yml
+  version: 2
 
-    (3) Run the model using `dbt run -s conversion_rates`. What happens?
+  models:
+    - name: conversion_rates
+      description: USD currency conversion rates at a daily level
+      config:
+        contract:
+          enforced: true
+  ```
 
-    (4) Add column data types to the `conversion_rates` model YML:
+  (3) Run the model using `dbt run -s conversion_rates`. What happens?
 
-    ```yml
-    version: 2
+  (4) Add column data types to the `conversion_rates` model YML:
 
-    models:
-      - name: conversion_rates
-        description: USD currency conversion rates at a daily level
-        config:
-          contract:
-            enforced: true
-        columns:
-          - name: conversion_rate_id
-            data_type: ...  # TODO: Add data_type
+  ```yml
+  version: 2
 
-          - name: date_day
-            data_type: ...  # TODO: Add data_type
+  models:
+    - name: conversion_rates
+      description: USD currency conversion rates at a daily level
+      config:
+        contract:
+          enforced: true
+      columns:
+        - name: conversion_rate_id
+          data_type: ...  # TODO: Add data_type
 
-          - name: currency
-            data_type: ...  # TODO: Add data_type
+        - name: date_day
+          data_type: ...  # TODO: Add data_type
 
-          - name: rate_usd
-            data_type: ...  # TODO: Add data_type
-    ```
+        - name: currency
+          data_type: ...  # TODO: Add data_type
 
-    (5) Run the model again and ensure it finishes OK. Look at the DDL in the debug logs. Can you see the contract at play?
+        - name: rate_usd
+          data_type: ...  # TODO: Add data_type
+  ```
+
+  (5) Run the model again and ensure it finishes OK. Look at the DDL in the debug logs. Can you see the contract at play?
 </details>
 
 
@@ -129,76 +132,77 @@ You've been asked to make some changes to the `conversion_rates` model. The mode
 
 <details>
   <summary>👉 Section 4</summary>
-    (1) Rename the `conversion_rates` model to `conversion_rates_v1` in the finance project
 
-    (2) Add `v1` version to the `conversion_rates` schema YML and set the latest version to `1`
+  (1) Rename the `conversion_rates` model to `conversion_rates_v1` in the finance project
 
-    ```yml
+  (2) Add `v1` version to the `conversion_rates` schema YML and set the latest version to `1`
 
-    version: 2
+  ```yml
 
-    models:
-      - name: conversion_rates
-        latest_version: 1
-        description: USD currency conversion rates at a daily level
-        config:
-          contract:
-            enforced: true
-        columns:
-          ...
-        versions:
-          - v: 1
-    ```
+  version: 2
 
-    (3) Create the new generalized version of the `conversion_rates` model in `models/marts/conversion_rates_v2.sql`:
+  models:
+    - name: conversion_rates
+      latest_version: 1
+      description: USD currency conversion rates at a daily level
+      config:
+        contract:
+          enforced: true
+      columns:
+        ...
+      versions:
+        - v: 1
+  ```
 
-    ```sql
-    with rates_usd as (
-        select
-            *
-        from {{ ref('stg_finance__conversion_rates_usd') }}
-    ),
+  (3) Create the new generalized version of the `conversion_rates` model in `models/marts/conversion_rates_v2.sql`:
 
-    fill_usd as (
-        select
-            date_day,
-            currency,
-            rate_usd
-        from rates_usd
+  ```sql
+  with rates_usd as (
+      select
+          *
+      from {{ ref('stg_finance__conversion_rates_usd') }}
+  ),
 
-        union all
+  fill_usd as (
+      select
+          date_day,
+          currency,
+          rate_usd
+      from rates_usd
 
-        select distinct
-            date_day,
-            'USD' as currency,
-            1 as rate_usd
-        from rates_usd
-    ),
+      union all
 
-    fields as (
-        select
-            date_day,
-            currency as source_currency,
-            'USD' as target_currency,
-            rate_usd as rate
-        from fill_usd
-    ),
+      select distinct
+          date_day,
+          'USD' as currency,
+          1 as rate_usd
+      from rates_usd
+  ),
 
-    final as (
-        select
-            {{ dbt_utils.generate_surrogate_key(["date_day", "source_currency", "target_currency"]) }} as conversion_rate_id,
-            *
-        from fields
-    )
+  fields as (
+      select
+          date_day,
+          currency as source_currency,
+          'USD' as target_currency,
+          rate_usd as rate
+      from fill_usd
+  ),
 
-    select
-        *
-    from final
-    ```
+  final as (
+      select
+          {{ dbt_utils.generate_surrogate_key(["date_day", "source_currency", "target_currency"]) }} as conversion_rate_id,
+          *
+      from fields
+  )
 
-    (4) Run the model using `dbt run -s conversion_rates`. What happens?
+  select
+      *
+  from final
+  ```
 
-    (5) Switch to the ecommerce project and ensure that all the models are still running OK
+  (4) Run the model using `dbt run -s conversion_rates`. What happens?
+
+  (5) Switch to the ecommerce project and ensure that all the models are still running OK
 
 </details>
 
@@ -208,13 +212,14 @@ With all the consumers having had enough time to migrate to the prerelease versi
 
 <details>
   <summary>👉 Section 5</summary>
-    (1) Set `latest_version: 2` in the `conversion_rates` schema YML in the finance project
 
-    (2) In the ecommerce project, run `dbt run -s conversion_rates+` to run the model and everything downstream from it. What happens?
+  (1) Set `latest_version: 2` in the `conversion_rates` schema YML in the finance project
 
-    (3) Update any models that are broken by the new version of the `conversion_rates` model
+  (2) In the ecommerce project, run `dbt run -s conversion_rates+` to run the model and everything downstream from it. What happens?
 
-    (4) Run `dbt run -s conversion_rates+` again to make sure everything works
+  (3) Update any models that are broken by the new version of the `conversion_rates` model
+
+  (4) Run `dbt run -s conversion_rates+` again to make sure everything works
 
 </details>
 
