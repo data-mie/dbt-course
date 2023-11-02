@@ -1,4 +1,4 @@
-name: dbt_course
+name: dbt_course_ecommerce
 version: 1.0.0
 config-version: 2
 
@@ -18,5 +18,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 
 models:
-    dbt_course:
+    dbt_course_ecommerce:
         +materialized: table
+        marts:
+            finance:
+                +group: ecommerce
+                +access: private

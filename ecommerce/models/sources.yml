@@ -17,8 +17,3 @@ sources:
     database: raw
     tables:
       - name: payments
-
-  - name: finance
-    database: raw
-    tables:
-      - name: conversion_rates_usd

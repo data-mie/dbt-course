@@ -7,7 +7,7 @@ with orders as (
 rates as (
     select
         *
-    from {{ ref('conversion_rates') }}
+    from {{ ref('dbt_course_finance', 'conversion_rates') }}
 ),
 
 order_rates as (

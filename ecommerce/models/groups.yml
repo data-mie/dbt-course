@@ -1,0 +1,4 @@
+groups:
+  - name: ecommerce
+    owner:  # Owner with name or email is required
+      name: Ecommerce Team
