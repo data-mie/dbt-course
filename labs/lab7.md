@@ -168,8 +168,8 @@ deduplicated as (
     {{
         dbt_utils.deduplicate(
             relation='renamed',
-            partition_by='<partition-by-column>',
-            order_by='<order-by-column> desc'
+            partition_by='<partition-by-column>',    -- TODO: Add partition_by column
+            order_by='<order-by-column> desc'        -- TODO: Add order_by column
         )
     }}
 )
