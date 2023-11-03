@@ -56,7 +56,7 @@ Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tabl
 <details>
   <summary>👉 Section 3</summary>
 
-  (3.1) Add the three orders tables to your `sources.yml`
+  (3.1) Add the three orders tables to your `sources.yml`: `orders_us`, `orders_de` and `orders_au`
 
   (3.2) Refactor `stg_ecomm__orders` so that it combines the three orders tables using the `dbt_utils.union_relations` macro:
 
@@ -65,7 +65,9 @@ Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tabl
         {{
             dbt_utils.union_relations(
                 relations=[
-                    ...
+                    source('ecomm', 'orders_us'),
+                    source('ecomm', 'orders_de'),
+                    source('ecomm', 'orders_au')
                 ],
             )
         }}
@@ -76,8 +78,20 @@ Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tabl
 
   (3.3) Preview and inspect the compiled SQL of `stg_ecomm__orders`. How does the `dbt_utils.union_relations` macro differ from a manually constructed union?
 
-  (3.4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id`
+  (3.4) Extract store country code from the `_dbt_source_relation` column and map it to the `store_id` in the `stg_ecomm__orders` model
   ```sql
+    with sources as (
+        {{
+            dbt_utils.union_relations(
+                relations=[
+                    source('ecomm', 'orders_us'),
+                    source('ecomm', 'orders_de'),
+                    source('ecomm', 'orders_au')
+                ],
+            )
+        }}
+    ),
+
     store_codes as (
         select
             *,
@@ -103,9 +117,11 @@ Rewrite `stg_ecomm__orders` so that it creates an union of the three orders tabl
             created_at as ordered_at,
             status as order_status
         from store_ids
-    ),
+    )
 
-    ...
+    select
+        *
+    from renamed
   ```
   (3.5) Ensure the model and its downstream depencies run successfully `dbt run -s stg_ecomm__orders+`
 
@@ -138,6 +154,16 @@ order by order_id
 
 (4.2) Use the `dbt_utils.deduplicate` macro to deduplicate orders in `stg_ecomm__orders`. Which columns should you partition and group by?
 ```sql
+...
+renamed as (
+    select
+        *,
+        id as order_id,
+        created_at as ordered_at,
+        status as order_status
+    from store_ids
+),
+
 deduplicated as (
     {{
         dbt_utils.deduplicate(
@@ -146,9 +172,11 @@ deduplicated as (
             order_by='<order-by-column> desc'
         )
     }}
-),
+)
 
-...
+select
+    *
+from deduplicated
 ```
 
 (4.3) Ensure the model and its downstream depencies run successfully: `dbt run -s stg_ecomm__orders+`
@@ -165,9 +193,22 @@ Order amounts in the DE and AU tables are in EUR and AUD currencies, respectivel
 <details>
   <summary>👉 Section 5</summary>
 
-(5.1) Add the `finance` source with the `conversion_rates_usd` table to `sources.yml`
+(5.1) Add the `finance` source with the `conversion_rates_usd` table to `sources.yml`:
 
-(5.2) Create a `stg_finance__conversion_rates_usd` model in a `models/staging/finance` folder. Include a `conversion_rate_id` primary key using `dbt_utils.generate_surrogate_key`. Also, add tests for the primary key to `schema.yml`
+```
+# models/sources.yml
+version: 2
+
+sources:
+  - name: finance
+    database: raw
+    tables:
+      - name: conversion_rates_usd
+
+...
+```
+
+(5.2) Create a `stg_finance__conversion_rates_usd` model in a `models/staging/finance` folder. Include a `conversion_rate_id` primary key using `dbt_utils.generate_surrogate_key`. Also, add tests for the primary key in the `schema.yml`
 
 ```sql
 with source as (
@@ -188,7 +229,7 @@ select
 from final
 ```
 
-(5.3) Create a `int_ecomm__orders_enriched` model in the `models/intermediate/ecomm` folder that adds a `total_amount_usd` to `stg_ecomm__orders`
+(5.3) Create a `int_ecomm__orders_enriched` model in the `models/staging/ecomm` folder that adds a `total_amount_usd` to `stg_ecomm__orders`
 
 ```sql
 with orders as (
@@ -206,10 +247,10 @@ rates as (
 order_rates as (
   select
       orders.*,
-      ... as rate_usd
+      ... as rate_usd        -- TODO: Fill the logic
   from orders
   left join rates on (
-    ...
+    ...                      -- TODO: Fill the join
   )
 ),
 
