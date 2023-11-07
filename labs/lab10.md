@@ -28,7 +28,7 @@ Your data organization has made the decision to split the monolithic project ver
     ...
   ```
 
-  (6) Upgrade refs to cross-project refs in the ecommerce project
+  (6) Upgrade refs to cross-project refs in the ecommerce project: `{{ ref('dbt_course_finance', '<model-name>') }}`
 
   (7) Run `dbt run` in the `dbt_course_ecommerce` project. What happens?
 </details>
