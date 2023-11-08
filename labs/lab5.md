@@ -105,9 +105,10 @@ The store mappings are as follows:
     2,London
     3,Tokyo
   ```
-  (2) Execute `dbt seed` in the console at the bottom of your screen to make sure your seed uploads correctly.
-  (3) You can now reference that data as `{{ ref('stores') }}`. Add code in your `orders` model that adds a `store_name` column.
-  (4) Execute `dbt run -s orders` to make sure your updates run successfully.
+  (2) Add a `schema.yml` file in the `seeds/` directory and document your `stores` seed there (see [example](https://docs.getdbt.com/faqs/tests/testing-seeds#example))
+  (3) Execute `dbt seed` in the console at the bottom of your screen to make sure your seed uploads correctly.
+  (4) You can now reference that data as `{{ ref('stores') }}`. Add code in your `orders` model that adds a `store_name` column.
+  (5) Execute `dbt run -s orders` to make sure your updates run successfully.
 </details>
 
 ## Links and Walkthrough Guides
