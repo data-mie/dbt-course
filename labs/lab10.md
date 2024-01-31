@@ -28,7 +28,7 @@ Your data organization has made the decision to split the monolithic project ver
     ...
   ```
 
-  (6) Upgrade refs to cross-project refs in the ecommerce project: `{{ ref('dbt_course_finance', '<model-name>') }}`
+  (6) Upgrade refs to cross-project refs in the `dbt_course_ecommerce` project: `{{ ref('dbt_course_finance', '<model-name>') }}`
 
   (7) Run `dbt run` in the `dbt_course_ecommerce` project. What happens?
 </details>
@@ -202,7 +202,7 @@ You've been asked to make some changes to the `conversion_rates` model. The mode
 
   (4) Run the model using `dbt run -s conversion_rates`. What happens?
 
-  (5) Switch to the ecommerce project and ensure that all the models are still running OK
+  (5) Switch to the `dbt_course_ecommerce` project and ensure that all the models are still running OK
 
 </details>
 
@@ -215,12 +215,40 @@ With all the consumers having had enough time to migrate to the prerelease versi
 
   (1) Set `latest_version: 2` in the `conversion_rates` schema YML in the finance project
 
-  (2) In the ecommerce project, run `dbt run -s conversion_rates+` to run the model and everything downstream from it. What happens?
+  (2) In the `dbt_course_ecommerce` project, run `dbt run -s conversion_rates+` to run the model and everything downstream from it. What happens?
 
   (3) Update any models that are broken by the new version of the `conversion_rates` model
 
   (4) Run `dbt run -s conversion_rates+` again to make sure everything works
 
+</details>
+
+
+<details>
+  <summary>👉 What your dbt project may look like after this lab</summary>
+
+  ```
+  analysis/
+  logs/
+  macros/
+  ├─ test_greater_than_zero.sql
+  models/
+  ├─ customers.sql
+  ├─ orders.sql
+  ├─ schema.yml
+  ├─ sources.yml
+  ├─ stg_ecomm__customers.sql
+  ├─ stg_ecomm__deliveries.sql
+  ├─ stg_ecomm__orders.sql
+  seeds/
+  snapshots/
+  target/
+  tests/
+  ├─ count_orders_check.sql
+  .gitignore
+  dbt_project.yml
+  README.md
+  ```
 </details>
 
 ## Links and Walkthrough Guides
