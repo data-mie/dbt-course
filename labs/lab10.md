@@ -225,29 +225,34 @@ With all the consumers having had enough time to migrate to the prerelease versi
 
 
 <details>
-  <summary>👉 What your dbt project may look like after this lab</summary>
+  <summary>👉 What your dbt folder hierarchy may look like after this lab</summary>
 
   ```
-  analysis/
-  logs/
-  macros/
-  ├─ test_greater_than_zero.sql
-  models/
-  ├─ customers.sql
-  ├─ orders.sql
-  ├─ schema.yml
-  ├─ sources.yml
-  ├─ stg_ecomm__customers.sql
-  ├─ stg_ecomm__deliveries.sql
-  ├─ stg_ecomm__orders.sql
-  seeds/
-  snapshots/
-  target/
-  tests/
-  ├─ count_orders_check.sql
-  .gitignore
-  dbt_project.yml
-  README.md
+  .
+  ├── ecommerce/
+  │   ├── macros/
+  │   │   └── ...
+  │   ├── models/
+  │   │   ├── marts/
+  │   │   │   └── ...
+  │   │   └── staging/
+  │   │       ├── ecomm/
+  │   │       │   └── ...
+  │   │       └── stripe/
+  │   │           └── ...
+  │   ├── dbt_project.yml
+  │   └── packages.yml
+  └── finance/
+      ├── macros/
+      │   └── ...
+      ├── models/
+      │   ├── marts/
+      │   │   └── ...
+      │   └── staging/
+      │       └── finance/
+      │           └── ...
+      ├── dbt_project.yml
+      └── packages.yml
   ```
 </details>
 
