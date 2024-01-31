@@ -225,7 +225,7 @@ With all the consumers having had enough time to migrate to the prerelease versi
 
 
 <details>
-  <summary>👉 What your dbt folder hierarchy may look like after this lab</summary>
+  <summary>👉 What your folder structure should look like after this lab</summary>
 
   ```
   .
