@@ -24,7 +24,7 @@ Your data organization has made the decision to split the monolithic project ver
 
   ```yml
   packages:
-    - local: ../finance
+    - local: ../dbt_course_finance
     ...
   ```
 
