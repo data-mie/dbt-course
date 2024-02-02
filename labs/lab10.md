@@ -20,7 +20,7 @@ Your data organization has made the decision to split the monolithic project ver
 
   (4) Repeat steps 1-2 for the `dbt_course_ecommerce` project so that it includes `ecomm` and `stripe` models
 
-  (5) Import the `dbt_course_finance` project into `dbt_course_ecommerce` project by adding it as a package and then running `dbt deps`:
+  (5) Import the `dbt_course_finance` project into `dbt_course_ecommerce` project by adding it as a package to `dbt_course_ecommerce/packages.yml` and then running `dbt deps`:
 
   ```yml
   packages:
