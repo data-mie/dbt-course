@@ -45,22 +45,24 @@ Add the query tag to your project and then verify that it's working.
 </details>
 
 
-### 3. Add a `cluster_by` config to the orders model
+### 3. Create a zero copy clone of the production database
 
-While our orders model now builds quickly, it's still very slow to query.
-
-Add a `cluster_by` config to the `orders` model, based on what you think the most common query pattern will be.
+Building the entire project from scratch in your development environment using `dbt run` may take a long time. To get up and running quickly, we can create a zero copy clone of the production database. This will allow us to build our development models on top of production models without actually affecting the production data.
 
 <details>
   <summary>👉 Section 3</summary>
 
-  (1) I'm going to assume that filtering by the `ordered_at` is going to be the most common query pattern. We're therefore going to cluster by that column, by adding the following line to the config in the `orders` model:
-  ```
-  cluster_by=['ordered_at']
-  ```
-  (2) Execute `dbt run -s orders` to make sure everything works correctly. Can you see the 'cluster by' section of the logs?
-
+    (1) Drop your existing development schema and create a zero copy clone of the production database by running the following command:
+    ```sql
+    drop schema analytics.dbt_stumelius cascade;
+    create schema if not exists analytics.dbt_stumelius clone analytics.production;
+    ```
+    (2) Run the `customers` model to verify:
+    ```bash
+    dbt run -s customers
+    ```
 </details>
+
 
 ## Links and Walkthrough Guides
 
