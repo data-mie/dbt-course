@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: ecomm
+    database: raw
+    tables:
+      - name: customers
+        description: Each record in this table represents a customer in our ecommerce application.
+      - name: orders
+        description: Each record in this table represents an order in our ecommerce application.
+      - name: deliveries
+
+  - name: stripe
+    database: raw
+    tables:
+      - name: payments
