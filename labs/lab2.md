@@ -33,7 +33,7 @@ Things to think about:
             - unique
             - not_null
   ```
-  (2) Execute `dbt test` in the console at the bottom of your screen to make sure all the tests pass.
+  (2) Execute `dbt test` in the console to make sure all the tests pass.
 </details>
 
 ### 2. Add columns to your `customers` model that contain how many orders the customer had in the last 30, 90 and 360 days.
@@ -53,7 +53,7 @@ Things to think about:
   {% endfor %}
   ```
   (2) Add your three new columns to the `joined` CTE.
-  (3) Execute `dbt run` in the console at the bottom of your screen to make sure everything runs successfully.
+  (3) Execute `dbt run` in the console to make sure everything runs successfully.
 </details>
 
 ### 3. Add a test to ensure all the delivery time columns are greater than zero (if not null)
@@ -82,7 +82,7 @@ In the last lab, we added two columns to each of the `orders` and `customers` mo
           tests:
             - greater_than_zero
   ```
-  (3) Execute `dbt test` in the console at the bottom of your screen to make sure all the tests pass.
+  (3) Execute `dbt test` in the console to make sure all the tests pass.
 </details>
 
 ### 4. Add a test to ensure that the number of orders in the last 90 days from our `customers` table doesn't exceed the total number of orders in our `orders` table.
@@ -120,7 +120,7 @@ Given the specificity of this test, we likely don't want to write a custom schem
       *
   from joined
   ```
-  (2) Execute `dbt test` in the console at the bottom of your screen to make sure all the tests pass.
+  (2) Execute `dbt test` in the console to make sure all the tests pass.
 </details>
 
 

@@ -20,7 +20,7 @@ where customer_id in (
   select
     distinct customer_id
   from {{ ref('orders') }}
-  where ordered_at > current_date - 42
+  where ordered_at > current_date - 49
 )
 ```
 <details>
@@ -39,7 +39,7 @@ where customer_id in (
     select distinct
       customer_id
     from {{ ref('orders') }}
-    where ordered_at > current_date - 42
+    where ordered_at > current_date - 49
   )
 
   select
@@ -63,7 +63,7 @@ where customer_id in (
     select distinct
       customer_id
     from {{ ref('orders') }}
-    where ordered_at > current_date - 42
+    where ordered_at > current_date - 49
   ),
   
   half_year as (
@@ -110,6 +110,8 @@ Things to think about:
   (3) Add a config to the two new models so that they get `materialized` as `ephemeral`.
 
   (4) Execute `dbt run -s +seven_week_active_customers` to make sure your model runs successfully.
+
+  (5) Inspect the compiled SQL of `seven_week_active_customers`. How does it look? What do you notice about the CTEs?
 </details>
 
 ### 3. Improve query performance by table clustering
@@ -180,11 +182,11 @@ If you got this far and still have time left you can try out the Snowflake query
 <details>
   <summary>👉 Section 4 </summary>
 
-  (1) Open the `seven_week_active_customers` model in the IDE and the click 'Compile' to generate compiled SQL for the model
+  (1) Open the compiled SQL of the `seven_week_active_customers` model
 
   (2) Log into Snowflake and create a new worksheet
 
-  (3) Copy the compiled SQL from the dbt Cloud IDE, paste it into the Snowflake worksheet and click 'Run' to execute the query
+  (3) Copy the compiled SQL, paste it into the Snowflake worksheet and click 'Run' to execute the query
 
   (4) Open the query profile. Can you identify the parts of the query that take longest to evaluate?
 </details>
