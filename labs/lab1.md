@@ -104,7 +104,7 @@ Things to think about:
   {{ source('ecomm', 'customers') }}
   ```
 
-  (3) Execute `dbt run` in the console at the bottom of your screen to make sure everything is working.
+  (3) Execute `dbt run` in the console to make sure everything is working.
 
 </details>
 
@@ -155,7 +155,7 @@ Things to think about:
           description: The timestamp of a customer's most recent order.
   ```
 
-  (3) Execute `dbt docs generate` in the console at the bottom of your screen to make sure everything is working. If it runs successfully, you can click in the top left corner to see your auto-generated documentation.
+  (3) Execute `dbt docs generate` in the console to make sure everything is working. If it runs successfully, you can click in the top left corner to see your auto-generated documentation.
 
 </details>
 
@@ -254,7 +254,7 @@ Create an `orders` model that calculates `delivery_time_from_collection` and `de
   from joined
   ```
 
-  (3) Execute `dbt run` in the console at the bottom of your screen to make sure everything is working.
+  (3) Execute `dbt run` in the console to make sure everything is working.
 
 </details>
 
@@ -277,7 +277,7 @@ Add `average_delivery_time_from_collection` and `average_delivery_time_from_orde
 
   (3) Finally, add those two new fiels in your `joined` CTE.
 
-  (4) Execute `dbt run` in the console at the bottom of your screen to make sure everything is working.
+  (4) Execute `dbt run` in the console to make sure everything is working.
 
 </details>
 

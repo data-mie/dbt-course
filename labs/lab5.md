@@ -43,7 +43,7 @@ Things to think about:
 
     {% endsnapshot %}
   ```
-  (2) Execute `dbt snapshot` in the console at the bottom of your screen to make sure your snapshot run correctly.
+  (2) Execute `dbt snapshot` in the console to make sure your snapshot run correctly.
 </details>
 
 ### 2. Snapshot the orders table
@@ -78,7 +78,7 @@ Things to think about:
 
     {% endsnapshot %}
   ```
-  (2) Execute `dbt snapshot` in the console at the bottom of your screen to make sure your snapshots run correctly.
+  (2) Execute `dbt snapshot` in the console to make sure your snapshots run correctly.
 </details>
 
 ### 3. Add the stores seed file to our project
@@ -105,7 +105,7 @@ The store mappings are as follows:
     2,London
     3,Tokyo
   ```
-  (2) Execute `dbt seed` in the console at the bottom of your screen to make sure your seed uploads correctly.
+  (2) Execute `dbt seed` in the console to make sure your seed uploads correctly.
   (3) You can now reference that data as `{{ ref('stores') }}`. Add code in your `orders` model that adds a `store_name` column.
   (4) Execute `dbt run -s orders` to make sure your updates run successfully.
 </details>
