@@ -63,7 +63,7 @@ Based on your findings in step 2, refactor the incremental model to ensure we al
   ```
   {{ config(materialized='incremental', unique_key='order_id') }}
   ```
-  (3) Run `dbt run -s orders` and inspect the compiled SQL that is being executed. Does it look like it's working correctly? You should now see a merge statement instead of an insert.
+  (3) Run `dbt --debug run -s orders` and inspect the compiled SQL that is being executed. Does it look like it's working correctly? You should now see a merge statement instead of an insert.
 
 </details>
 
