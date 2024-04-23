@@ -254,7 +254,7 @@ Create an `orders` model that calculates `delivery_time_from_collection` and `de
   from joined
   ```
 
-  (3) Execute `dbt run` in the console to make sure everything is working.
+  (3) Execute `dbt run -s orders` in the console. What happens, do you get an error? If so, why and how can you fix it? Rerun the model with the `-d` / `--debug` flag to debug the process and see what's going on.
 
 </details>
 
