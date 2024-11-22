@@ -17,19 +17,18 @@ Set up a snapshot model on the `customers` source table (not the model).
 
 Things to think about:
 * What type of snapshot strategy is best for this table?
-* What database and schema should it get built in?
+* What schema should it get built in?
 
 <details>
   <summary>👉 Section 1</summary>
 
-  (1) Create a file in the `snapshots/` directory called `customers_snapshot.sql` that contains the following code (replace `<initials>` with your initials):
+  (1) Create a file in the `snapshots/` directory called `customers_snapshot.sql` that contains the following code:
   ```sql
     {% snapshot customers_snapshot %}
 
     {{
         config(
-        target_database='analytics',
-        target_schema='snapshots_<initials>',
+        target_schema=generate_schema_name('snapshots'),
         unique_key='id',
 
         strategy='check',
@@ -44,6 +43,8 @@ Things to think about:
     {% endsnapshot %}
   ```
   (2) Execute `dbt snapshot` in the console to make sure your snapshot run correctly.
+
+  (3) Observe the compiled SQL. How does the `generate_schema_name` macro compile and what happens under the hood of `dbt snapshot`?
 </details>
 
 ### 2. Snapshot the orders table
@@ -52,19 +53,18 @@ Similarly, we want a snapshot of the `orders` source table. Set another snapshot
 
 Things to think about:
 * What type of snapshot strategy is best for this table?
-* Should this snapshot get built in the same database and schema as the other snapshot?
+* Should this snapshot get built in the same schema as the other snapshot?
 
 <details>
   <summary>👉 Section 2</summary>
 
-  (1) Create a file in the `snapshots/` directory called `orders_snapshot.sql` that contains the following code (again, replace `<initials>` with your initials)):
+  (1) Create a file in the `snapshots/` directory called `orders_snapshot.sql` that contains the following code:
   ```sql
     {% snapshot orders_snapshot %}
 
     {{
         config(
-        target_database='analytics',
-        target_schema='snapshots_<initials>',
+        target_schema=generate_schema_name('snapshots'),
         unique_key='id',
 
         strategy='timestamp',
@@ -79,6 +79,8 @@ Things to think about:
     {% endsnapshot %}
   ```
   (2) Execute `dbt snapshot` in the console to make sure your snapshots run correctly.
+
+  (3) Observe the compiled SQL. How does the `generate_schema_name` macro compile and what happens under the hood of `dbt snapshot`?
 </details>
 
 ### 3. Add the stores seed file to our project
